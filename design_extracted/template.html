@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="cf94aca3-3c85-457c-933c-45b3fabb1792"></script>
+</head>
+<body>
+
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("0405bd9a-1dc4-4246-a3c2-bccdfba829cd") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fd278d5d-f29b-4600-b5b7-81f8675fb31d") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("ad937679-6591-4764-979a-92b84b8625ae") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fcb00e8f-84be-454e-84c7-6637dcab1022") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("66b2dbaa-22ae-4607-9be2-2348f3009b67") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("0405bd9a-1dc4-4246-a3c2-bccdfba829cd") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fd278d5d-f29b-4600-b5b7-81f8675fb31d") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("ad937679-6591-4764-979a-92b84b8625ae") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fcb00e8f-84be-454e-84c7-6637dcab1022") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("66b2dbaa-22ae-4607-9be2-2348f3009b67") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("0405bd9a-1dc4-4246-a3c2-bccdfba829cd") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fd278d5d-f29b-4600-b5b7-81f8675fb31d") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("ad937679-6591-4764-979a-92b84b8625ae") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fcb00e8f-84be-454e-84c7-6637dcab1022") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("66b2dbaa-22ae-4607-9be2-2348f3009b67") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("0405bd9a-1dc4-4246-a3c2-bccdfba829cd") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fd278d5d-f29b-4600-b5b7-81f8675fb31d") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("ad937679-6591-4764-979a-92b84b8625ae") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fcb00e8f-84be-454e-84c7-6637dcab1022") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("66b2dbaa-22ae-4607-9be2-2348f3009b67") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("ca245f07-71dc-4fa2-98db-99485caa5e15") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("d715e28b-3a95-4d75-8197-9ba9f590284b") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("9568c5bb-43d7-41a3-9310-ccc726c58f51") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("781154bd-4cda-417e-ad78-fa233b962b11") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("5c03f4c4-ba54-4187-92e9-03dfa0cf8a71") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("bca97439-8b38-46ab-bbf8-5ac7120d1eb0") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("ca245f07-71dc-4fa2-98db-99485caa5e15") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("d715e28b-3a95-4d75-8197-9ba9f590284b") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("9568c5bb-43d7-41a3-9310-ccc726c58f51") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("781154bd-4cda-417e-ad78-fa233b962b11") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("5c03f4c4-ba54-4187-92e9-03dfa0cf8a71") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("bca97439-8b38-46ab-bbf8-5ac7120d1eb0") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("ca245f07-71dc-4fa2-98db-99485caa5e15") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("d715e28b-3a95-4d75-8197-9ba9f590284b") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("9568c5bb-43d7-41a3-9310-ccc726c58f51") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("781154bd-4cda-417e-ad78-fa233b962b11") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("5c03f4c4-ba54-4187-92e9-03dfa0cf8a71") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("bca97439-8b38-46ab-bbf8-5ac7120d1eb0") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
+    font-family: 'Geist', -apple-system, system-ui, sans-serif;
+    background: #FAFAF7;
+    color: #15192A;
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  button { font-family: inherit; cursor: pointer; }
+  input, select { font-family: inherit; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #DDD8CD; border-radius: 5px; border: 2px solid #FAFAF7; }
+  ::-webkit-scrollbar-thumb:hover { background: #B5B0A4; }
+  @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+</style>
+</helmet>
+
+<div style="display:flex;height:100vh;width:100%;overflow:hidden;background:#FAFAF7">
+
+  <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+  <aside style="width:236px;flex:none;background:#0F1A35;color:#E8EAF0;display:flex;flex-direction:column;height:100%">
+    <!-- Brand -->
+    <div style="padding:20px 18px 22px 18px;border-bottom:1px solid #1E2C4E">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:32px;height:32px;border-radius:8px;background:#ED6B17;display:flex;align-items:center;justify-content:center;flex:none">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polyline points="12 7 12 12 15.5 14"></polyline>
+          </svg>
+        </div>
+        <div style="line-height:1.15">
+          <div style="font-size:13.5px;font-weight:600;color:#fff;letter-spacing:-0.1px">Time Doctor</div>
+          <div style="font-size:11px;color:#8A95B0;font-weight:500">Ashwheelz · HR Audit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <nav style="flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:2px;overflow-y:auto">
+      <div style="font-size:10px;font-weight:600;color:#5A6688;letter-spacing:1.2px;text-transform:uppercase;padding:8px 10px 6px">Workspace</div>
+
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="3">
+        <button onclick="{{ item.onClick }}" style="display:flex;align-items:center;gap:11px;padding:9px 11px;border-radius:7px;background:{{ item.bg }};border:0;color:{{ item.color }};font-size:13px;font-weight:{{ item.weight }};text-align:left;width:100%;letter-spacing:-0.1px;transition:background .12s" style-hover="{ background: '#1A2748' }">
+          <span style="width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex:none">{{ item.icon }}</span>
+          {{ item.label }}
+          <sc-if value="{{ item.badge }}" hint-placeholder-val="{{ false }}">
+            <span style="margin-left:auto;font-size:10.5px;background:#ED6B17;color:#fff;padding:1px 7px;border-radius:10px;font-weight:600;font-family:'JetBrains Mono',monospace">{{ item.badge }}</span>
+          </sc-if>
+        </button>
+      </sc-for>
+
+      <div style="font-size:10px;font-weight:600;color:#5A6688;letter-spacing:1.2px;text-transform:uppercase;padding:18px 10px 6px">Today</div>
+      <div style="padding:8px 11px;font-size:11.5px;color:#8A95B0;line-height:1.5">
+        <div style="display:flex;justify-content:space-between;padding:3px 0">
+          <span>Tracked</span><span style="color:#E8EAF0;font-family:'JetBrains Mono',monospace;font-weight:500">42</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:3px 0">
+          <span>Active</span><span style="color:#7BCB9C;font-family:'JetBrains Mono',monospace;font-weight:500">37</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:3px 0">
+          <span>Attention</span><span style="color:#ED9C5F;font-family:'JetBrains Mono',monospace;font-weight:500">5</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Footer status -->
+    <div style="padding:14px 16px;border-top:1px solid #1E2C4E;font-size:11.5px">
+      <div style="display:flex;align-items:center;gap:8px;color:#A8B2CC">
+        <span style="width:7px;height:7px;border-radius:50%;background:#5BCC8F;box-shadow:0 0 0 3px rgba(91,204,143,.15);animation:pulseDot 2s ease-in-out infinite"></span>
+        Server running · v5.4
+      </div>
+      <div style="color:#5A6688;font-size:10.5px;margin-top:4px;font-family:'JetBrains Mono',monospace">localhost:5050</div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════ MAIN ═══════════════════ -->
+  <main style="flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden">
+
+    <!-- ━━━━━━━━━━━ DASHBOARD ━━━━━━━━━━━ -->
+    <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}">
+      <div style="flex:1;overflow-y:auto;background:#FAFAF7">
+
+        <!-- Top bar -->
+        <div style="display:flex;align-items:center;padding:20px 32px 14px 32px;gap:14px;border-bottom:1px solid #ECE9E2;background:#FFFFFF;position:sticky;top:0;z-index:10">
+          <div>
+            <h1 style="margin:0;font-size:18px;font-weight:600;letter-spacing:-0.3px;color:#15192A">Daily audit</h1>
+            <div style="font-size:12px;color:#8B8E99;margin-top:2px">Tuesday, 24 June 2026 · all companies</div>
+          </div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+            <div style="display:flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;font-size:12.5px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8B8E99" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
+              <span style="font-family:'JetBrains Mono',monospace;color:#15192A">2026-06-24</span>
+            </div>
+            <button style="display:flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;font-size:12.5px;color:#4A5060">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>
+              Refresh
+            </button>
+            <button style="display:flex;align-items:center;gap:6px;padding:7px 12px;border:0;border-radius:7px;background:#ED6B17;color:#fff;font-size:12.5px;font-weight:600;box-shadow:0 1px 0 rgba(0,0,0,.04)">
+              Fetch TD data
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI strip -->
+        <div style="padding:20px 32px 4px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+
+          <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:16px 18px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:11.5px;color:#8B8E99;font-weight:500;letter-spacing:0.2px">Tracked employees</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5B7BD" stroke-width="2"><circle cx="9" cy="8" r="4"></circle><path d="M3 21v-1a6 6 0 0 1 6-6h0a6 6 0 0 1 6 6v1"></path><circle cx="17" cy="9" r="3"></circle><path d="M21 21v-1a4 4 0 0 0-4-4"></path></svg>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:#15192A;margin-top:6px;letter-spacing:-0.5px">42</div>
+            <div style="font-size:11.5px;color:#8B8E99;margin-top:3px">37 active · <span style="color:#8B8E99">5 absent</span></div>
+          </div>
+
+          <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:16px 18px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:11.5px;color:#8B8E99;font-weight:500;letter-spacing:0.2px">Avg productivity</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5B7BD" stroke-width="2" stroke-linecap="round"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:#15192A;margin-top:6px;letter-spacing:-0.5px">73.4<span style="font-size:14px;color:#8B8E99;font-weight:500">%</span></div>
+            <div style="font-size:11.5px;color:#2A7F5C;margin-top:3px;display:flex;align-items:center;gap:4px">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 15l7-7 7 7"></path></svg>
+              +2.1% vs 7-day avg
+            </div>
+          </div>
+
+          <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:16px 18px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:11.5px;color:#8B8E99;font-weight:500;letter-spacing:0.2px">Total hours logged</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5B7BD" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 16 14"></polyline></svg>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:#15192A;margin-top:6px;letter-spacing:-0.5px">287<span style="font-size:14px;color:#8B8E99;font-weight:500">h 42m</span></div>
+            <div style="font-size:11.5px;color:#8B8E99;margin-top:3px">211h active · 76h idle</div>
+          </div>
+
+          <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:16px 18px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:11.5px;color:#8B8E99;font-weight:500;letter-spacing:0.2px">Need attention</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:#15192A;margin-top:6px;letter-spacing:-0.5px">5</div>
+            <div style="font-size:11.5px;margin-top:3px"><span style="color:#B23A2F">2 high idle</span> · <span style="color:#B7791F">3 warn</span></div>
+          </div>
+        </div>
+
+        <!-- Filter row -->
+        <div style="padding:18px 32px 12px 32px;display:flex;align-items:center;gap:6px">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+            <button onclick="{{ f.onClick }}" style="display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:7px;border:1px solid {{ f.borderColor }};background:{{ f.bg }};color:{{ f.color }};font-size:12.5px;font-weight:{{ f.weight }};letter-spacing:-0.1px">
+              <sc-if value="{{ f.hasDot }}" hint-placeholder-val="{{ true }}">
+                <span style="width:6px;height:6px;border-radius:50%;background:{{ f.dotColor }}"></span>
+              </sc-if>
+              {{ f.label }}
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:{{ f.countColor }};font-weight:500">{{ f.count }}</span>
+            </button>
+          </sc-for>
+
+          <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+            <div style="display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;font-size:12.5px;color:#8B8E99;width:220px">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+              <input type="text" placeholder="Search employees…" style="border:0;background:transparent;outline:none;flex:1;font-size:12.5px;color:#15192A">
+            </div>
+            <button style="display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;font-size:12.5px;color:#4A5060">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 8 12 17l-9-9"></path></svg>
+              Sort
+            </button>
+            <button style="display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;font-size:12.5px;color:#4A5060">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M3 21h18"></path></svg>
+              Export
+            </button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div style="padding:0 32px 24px 32px">
+          <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden">
+
+            <!-- Header row -->
+            <div style="display:grid;grid-template-columns:260px 110px 90px 1fr 90px 100px 200px 80px;align-items:center;padding:12px 18px;background:#FBFAF6;border-bottom:1px solid #ECE9E2;font-size:10.5px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:0.7px">
+              <div>Employee</div>
+              <div>Status</div>
+              <div style="text-align:right">Hours</div>
+              <div style="padding-left:18px">Active vs. idle</div>
+              <div style="text-align:right">Non-prod</div>
+              <div style="text-align:center">Score</div>
+              <div style="padding-left:6px">Activity · 9 → 18</div>
+              <div style="text-align:right">Odoo</div>
+            </div>
+
+            <!-- Data rows -->
+            <sc-for list="{{ employees }}" as="emp" hint-placeholder-count="12">
+              <div style="display:grid;grid-template-columns:260px 110px 90px 1fr 90px 100px 200px 80px;align-items:center;padding:12px 18px;border-bottom:1px solid #F2F0EA;transition:background .12s" style-hover="{ background: '#FBFAF6' }">
+
+                <!-- Employee -->
+                <div style="display:flex;align-items:center;gap:11px;min-width:0">
+                  <div style="width:30px;height:30px;border-radius:7px;background:{{ emp.avatarBg }};color:{{ emp.avatarFg }};display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:600;flex:none;letter-spacing:0.2px">{{ emp.initials }}</div>
+                  <div style="min-width:0;flex:1">
+                    <div style="font-size:13px;font-weight:500;color:#15192A;letter-spacing:-0.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ emp.name }}</div>
+                    <div style="font-size:11px;color:#8B8E99;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ emp.role }}</div>
+                  </div>
+                </div>
+
+                <!-- Status -->
+                <div>
+                  <span style="display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:5px;background:{{ emp.statusBg }};color:{{ emp.statusFg }};font-size:11px;font-weight:500">
+                    <span style="width:5px;height:5px;border-radius:50%;background:{{ emp.statusDot }}"></span>
+                    {{ emp.statusLabel }}
+                  </span>
+                </div>
+
+                <!-- Hours -->
+                <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;color:{{ emp.hoursColor }};font-weight:500">{{ emp.hours }}</div>
+
+                <!-- Active vs idle stacked bar -->
+                <div style="padding-left:18px;padding-right:8px">
+                  <div style="display:flex;height:6px;border-radius:3px;overflow:hidden;background:#F2F0EA">
+                    <div style="background:#2A7F5C;height:100%;width:{{ emp.activeW }}"></div>
+                    <div style="background:#E5C46A;height:100%;width:{{ emp.idleW }}"></div>
+                    <div style="background:#D67E5E;height:100%;width:{{ emp.nonProdW }}"></div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;margin-top:5px;font-size:10.5px;color:#8B8E99;font-family:'JetBrains Mono',monospace">
+                    <span style="color:#2A7F5C">{{ emp.activeLabel }}</span>
+                    <span style="color:#B7791F">{{ emp.idleLabel }}</span>
+                  </div>
+                </div>
+
+                <!-- Non-prod -->
+                <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:{{ emp.nonprodColor }}">{{ emp.nonprod }}</div>
+
+                <!-- Score -->
+                <div style="display:flex;justify-content:center">
+                  <div style="display:inline-flex;align-items:center;gap:6px;padding:3px 8px 3px 5px;border-radius:14px;background:{{ emp.scoreBg }}">
+                    <span style="width:18px;height:18px;border-radius:50%;background:{{ emp.scoreRing }};display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9.5px;font-weight:700;font-family:'JetBrains Mono',monospace">{{ emp.scoreLetter }}</span>
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:{{ emp.scoreFg }};font-weight:600">{{ emp.score }}</span>
+                  </div>
+                </div>
+
+                <!-- Activity strip -->
+                <div style="padding:0 6px">
+                  <div style="display:flex;gap:3px;align-items:flex-end;height:26px">
+                    <sc-for list="{{ emp.bars }}" as="bar" hint-placeholder-count="9">
+                      <div style="flex:1;height:{{ bar.h }};background:{{ bar.color }};border-radius:1.5px;min-height:2px"></div>
+                    </sc-for>
+                  </div>
+                </div>
+
+                <!-- Odoo actions -->
+                <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;color:{{ emp.odooColor }};font-weight:500">{{ emp.odoo }}</div>
+              </div>
+            </sc-for>
+
+            <!-- Footer / legend -->
+            <div style="display:flex;align-items:center;padding:11px 18px;background:#FBFAF6;font-size:11.5px;color:#8B8E99">
+              <div style="display:flex;gap:18px">
+                <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:2px;background:#2A7F5C"></span>Active</span>
+                <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:2px;background:#E5C46A"></span>Idle</span>
+                <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:2px;background:#D67E5E"></span>Non-productive</span>
+              </div>
+              <div style="margin-left:auto;font-family:'JetBrains Mono',monospace;color:#4A5060">Showing 12 of 42 · last sync 14:32:08</div>
+            </div>
+          </div>
+
+          <!-- Activity log -->
+          <div style="margin-top:18px;background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden">
+            <div style="display:flex;align-items:center;padding:12px 18px;border-bottom:1px solid #ECE9E2">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="width:6px;height:6px;border-radius:50%;background:#5BCC8F;box-shadow:0 0 0 3px rgba(91,204,143,.15);animation:pulseDot 2s ease-in-out infinite"></span>
+                <span style="font-size:13px;font-weight:600;color:#15192A">Activity log</span>
+                <span style="font-size:11.5px;color:#8B8E99">live</span>
+              </div>
+              <button style="margin-left:auto;font-size:11.5px;color:#8B8E99;background:transparent;border:0">Clear</button>
+            </div>
+            <div style="padding:8px 18px 14px 18px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.85">
+              <div style="display:flex;gap:14px"><span style="color:#B5B7BD;flex:none">14:32:08</span><span style="color:#2A7F5C;flex:none">ok</span><span style="color:#4A5060">TD data fetched · 42 employees · 6.4s</span></div>
+              <div style="display:flex;gap:14px"><span style="color:#B5B7BD;flex:none">14:32:01</span><span style="color:#4263CD;flex:none">info</span><span style="color:#4A5060">Combined report rebuilt with 38 mappings</span></div>
+              <div style="display:flex;gap:14px"><span style="color:#B5B7BD;flex:none">14:31:54</span><span style="color:#2A7F5C;flex:none">ok</span><span style="color:#4A5060">Odoo users loaded · 42 active today · 1.8s</span></div>
+              <div style="display:flex;gap:14px"><span style="color:#B5B7BD;flex:none">14:31:50</span><span style="color:#4263CD;flex:none">info</span><span style="color:#4A5060">Polling Odoo for activity on 2026-06-24</span></div>
+              <div style="display:flex;gap:14px"><span style="color:#B5B7BD;flex:none">14:31:48</span><span style="color:#B7791F;flex:none">warn</span><span style="color:#4A5060">4 TD employees unmapped · ignored in combined view</span></div>
+              <div style="display:flex;gap:14px"><span style="color:#B5B7BD;flex:none">14:31:42</span><span style="color:#2A7F5C;flex:none">ok</span><span style="color:#4A5060">TimeDoctor session active · token expires in 47h</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ━━━━━━━━━━━ REPORTS ━━━━━━━━━━━ -->
+    <sc-if value="{{ isReports }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;overflow-y:auto;background:#FAFAF7">
+
+        <!-- Top bar -->
+        <div style="display:flex;align-items:center;padding:20px 32px 14px 32px;gap:14px;border-bottom:1px solid #ECE9E2;background:#FFFFFF;position:sticky;top:0;z-index:10">
+          <div>
+            <h1 style="margin:0;font-size:18px;font-weight:600;letter-spacing:-0.3px;color:#15192A">Reports</h1>
+            <div style="font-size:12px;color:#8B8E99;margin-top:2px">Week of 22 – 28 June 2026 · all departments</div>
+          </div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+            <div style="display:flex;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;overflow:hidden;font-size:12.5px">
+              <button style="padding:6px 11px;border:0;background:#FFFFFF;color:#8B8E99">Day</button>
+              <button style="padding:6px 11px;border:0;background:#15192A;color:#FFFFFF;font-weight:500">Week</button>
+              <button style="padding:6px 11px;border:0;background:#FFFFFF;color:#8B8E99">Month</button>
+              <button style="padding:6px 11px;border:0;background:#FFFFFF;color:#8B8E99">Quarter</button>
+            </div>
+            <button style="display:flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;font-size:12.5px;color:#4A5060">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M3 21h18"></path></svg>
+              Export CSV
+            </button>
+            <button style="display:flex;align-items:center;gap:6px;padding:7px 12px;border:0;border-radius:7px;background:#ED6B17;color:#fff;font-size:12.5px;font-weight:600">
+              Generate PDF
+            </button>
+          </div>
+        </div>
+
+        <div style="padding:20px 32px 24px 32px;display:flex;flex-direction:column;gap:18px">
+
+          <!-- KPI strip -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+            <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:16px 18px">
+              <div style="font-size:11.5px;color:#8B8E99;font-weight:500">Avg daily productivity</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:#15192A;margin-top:6px;letter-spacing:-0.5px">71.8<span style="font-size:14px;color:#8B8E99;font-weight:500">%</span></div>
+              <div style="display:flex;align-items:flex-end;gap:3px;margin-top:10px;height:24px">
+                <div style="flex:1;background:#E5E2D9;height:60%;border-radius:1.5px"></div>
+                <div style="flex:1;background:#E5E2D9;height:72%;border-radius:1.5px"></div>
+                <div style="flex:1;background:#E5E2D9;height:55%;border-radius:1.5px"></div>
+                <div style="flex:1;background:#E5E2D9;height:78%;border-radius:1.5px"></div>
+                <div style="flex:1;background:#E5E2D9;height:68%;border-radius:1.5px"></div>
+                <div style="flex:1;background:#E5E2D9;height:82%;border-radius:1.5px"></div>
+                <div style="flex:1;background:#ED6B17;height:73%;border-radius:1.5px"></div>
+              </div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:16px 18px">
+              <div style="font-size:11.5px;color:#8B8E99;font-weight:500">Total hours · week</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:#15192A;margin-top:6px;letter-spacing:-0.5px">1,847<span style="font-size:14px;color:#8B8E99;font-weight:500">h</span></div>
+              <div style="font-size:11.5px;color:#2A7F5C;margin-top:10px;display:flex;align-items:center;gap:4px">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 15l7-7 7 7"></path></svg>
+                +124h vs last week
+              </div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:16px 18px">
+              <div style="font-size:11.5px;color:#8B8E99;font-weight:500">Odoo actions logged</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:#15192A;margin-top:6px;letter-spacing:-0.5px">14,628</div>
+              <div style="font-size:11.5px;color:#8B8E99;margin-top:10px">348 actions / user · avg</div>
+            </div>
+            <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:16px 18px">
+              <div style="font-size:11.5px;color:#8B8E99;font-weight:500">Attendance rate</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:#15192A;margin-top:6px;letter-spacing:-0.5px">94.2<span style="font-size:14px;color:#8B8E99;font-weight:500">%</span></div>
+              <div style="font-size:11.5px;color:#B7791F;margin-top:10px;display:flex;align-items:center;gap:4px">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 9l7 7 7-7"></path></svg>
+                -1.4% vs last week
+              </div>
+            </div>
+          </div>
+
+          <!-- Productivity chart -->
+          <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:18px 20px">
+            <div style="display:flex;align-items:center;margin-bottom:14px">
+              <div>
+                <div style="font-size:13px;font-weight:600;color:#15192A">Productivity by day</div>
+                <div style="font-size:11.5px;color:#8B8E99;margin-top:2px">Active hours vs. idle hours · this week</div>
+              </div>
+              <div style="margin-left:auto;display:flex;gap:14px;font-size:11.5px;color:#4A5060">
+                <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:#2A7F5C"></span>Active</span>
+                <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:#E5C46A"></span>Idle</span>
+                <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:#D67E5E"></span>Non-prod</span>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:flex-end;gap:24px;height:200px;padding:6px 8px 0 8px;border-bottom:1px solid #ECE9E2">
+              <sc-for list="{{ weekBars }}" as="d" hint-placeholder-count="7">
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%">
+                  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;width:100%;max-width:46px;gap:2px">
+                    <div style="background:#D67E5E;border-radius:2px 2px 0 0;height:{{ d.nonProdH }};width:100%"></div>
+                    <div style="background:#E5C46A;height:{{ d.idleH }};width:100%"></div>
+                    <div style="background:#2A7F5C;border-radius:0 0 2px 2px;height:{{ d.activeH }};width:100%"></div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:24px;padding:8px 8px 0 8px">
+              <sc-for list="{{ weekBars }}" as="d" hint-placeholder-count="7">
+                <div style="flex:1;text-align:center">
+                  <div style="font-size:11.5px;color:#4A5060;font-weight:{{ d.weight }}">{{ d.day }}</div>
+                  <div style="font-size:10.5px;color:#8B8E99;font-family:'JetBrains Mono',monospace;margin-top:2px">{{ d.total }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <!-- 2-col: Attention + Top performers -->
+          <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:18px">
+
+            <!-- Attention required -->
+            <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden">
+              <div style="display:flex;align-items:center;padding:14px 18px 12px 18px;border-bottom:1px solid #ECE9E2">
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:#15192A;display:flex;align-items:center;gap:8px">
+                    <span style="width:6px;height:6px;border-radius:50%;background:#B23A2F"></span>
+                    Attention required
+                  </div>
+                  <div style="font-size:11.5px;color:#8B8E99;margin-top:2px">Ranked by 7-day suspicion score</div>
+                </div>
+                <span style="margin-left:auto;font-size:11px;color:#B23A2F;background:#FAE4E1;padding:3px 8px;border-radius:5px;font-weight:600;font-family:'JetBrains Mono',monospace">5</span>
+              </div>
+              <div>
+                <sc-for list="{{ attention }}" as="emp" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid #F2F0EA">
+                    <div style="width:28px;height:28px;border-radius:7px;background:{{ emp.avatarBg }};color:{{ emp.avatarFg }};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex:none">{{ emp.initials }}</div>
+                    <div style="flex:1;min-width:0">
+                      <div style="font-size:12.5px;font-weight:500;color:#15192A">{{ emp.name }}</div>
+                      <div style="font-size:11px;color:#8B8E99">{{ emp.note }}</div>
+                    </div>
+                    <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#B7791F;text-align:right">
+                      <div>idle {{ emp.idle }}</div>
+                      <div style="color:#B23A2F">non-prod {{ emp.nonprod }}</div>
+                    </div>
+                    <div style="width:46px;height:46px;border-radius:50%;background:{{ emp.scoreBg }};display:flex;align-items:center;justify-content:center;flex:none">
+                      <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;color:{{ emp.scoreFg }}">{{ emp.score }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <!-- Top performers -->
+            <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden">
+              <div style="display:flex;align-items:center;padding:14px 18px 12px 18px;border-bottom:1px solid #ECE9E2">
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:#15192A;display:flex;align-items:center;gap:8px">
+                    <span style="width:6px;height:6px;border-radius:50%;background:#2A7F5C"></span>
+                    Top performers
+                  </div>
+                  <div style="font-size:11.5px;color:#8B8E99;margin-top:2px">Highest active-time ratio</div>
+                </div>
+              </div>
+              <div>
+                <sc-for list="{{ topPerformers }}" as="emp" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid #F2F0EA">
+                    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8B8E99;width:14px;text-align:right;font-weight:600">{{ emp.rank }}</div>
+                    <div style="width:28px;height:28px;border-radius:7px;background:{{ emp.avatarBg }};color:{{ emp.avatarFg }};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex:none">{{ emp.initials }}</div>
+                    <div style="flex:1;min-width:0">
+                      <div style="font-size:12.5px;font-weight:500;color:#15192A">{{ emp.name }}</div>
+                      <div style="font-size:11px;color:#8B8E99">{{ emp.role }}</div>
+                    </div>
+                    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#2A7F5C;font-weight:600">{{ emp.pct }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <!-- Heatmap -->
+          <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:18px 20px">
+            <div style="display:flex;align-items:center;margin-bottom:14px">
+              <div>
+                <div style="font-size:13px;font-weight:600;color:#15192A">Activity heatmap</div>
+                <div style="font-size:11.5px;color:#8B8E99;margin-top:2px">Hourly intensity by employee · darker = more active</div>
+              </div>
+              <div style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:11px;color:#8B8E99">
+                Less
+                <div style="display:flex;gap:2px">
+                  <span style="width:12px;height:12px;border-radius:2px;background:#F2F0EA"></span>
+                  <span style="width:12px;height:12px;border-radius:2px;background:#D0E1D6"></span>
+                  <span style="width:12px;height:12px;border-radius:2px;background:#8FBE9F"></span>
+                  <span style="width:12px;height:12px;border-radius:2px;background:#4D9E72"></span>
+                  <span style="width:12px;height:12px;border-radius:2px;background:#1E6E4A"></span>
+                </div>
+                More
+              </div>
+            </div>
+
+            <!-- Hour scale -->
+            <div style="display:grid;grid-template-columns:130px repeat(10,1fr);gap:3px;padding-bottom:6px">
+              <div></div>
+              <sc-for list="{{ hourLabels }}" as="h" hint-placeholder-count="10">
+                <div style="font-size:10.5px;color:#8B8E99;font-family:'JetBrains Mono',monospace;text-align:center">{{ h }}</div>
+              </sc-for>
+            </div>
+
+            <sc-for list="{{ heatmapRows }}" as="row" hint-placeholder-count="8">
+              <div style="display:grid;grid-template-columns:130px repeat(10,1fr);gap:3px;align-items:center;padding:2px 0">
+                <div style="font-size:11.5px;color:#4A5060;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ row.name }}</div>
+                <sc-for list="{{ row.cells }}" as="cell" hint-placeholder-count="10">
+                  <div style="height:22px;background:{{ cell }};border-radius:3px"></div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+
+          <!-- Odoo users detail -->
+          <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden">
+            <div style="display:flex;align-items:center;padding:14px 18px 12px 18px;border-bottom:1px solid #ECE9E2">
+              <div>
+                <div style="font-size:13px;font-weight:600;color:#15192A">Odoo activity detail</div>
+                <div style="font-size:11.5px;color:#8B8E99;margin-top:2px">Action counts per user · today</div>
+              </div>
+              <button style="margin-left:auto;font-size:11.5px;color:#4A5060;background:transparent;border:1px solid #ECE9E2;border-radius:6px;padding:5px 10px">View all</button>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 220px 120px 220px;align-items:center;padding:10px 18px;background:#FBFAF6;font-size:10.5px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:0.7px;border-bottom:1px solid #ECE9E2">
+              <div>Name</div>
+              <div>Email</div>
+              <div style="text-align:right">Actions</div>
+              <div style="padding-left:18px">Modules</div>
+            </div>
+
+            <sc-for list="{{ odooDetail }}" as="u" hint-placeholder-count="6">
+              <div style="display:grid;grid-template-columns:1fr 220px 120px 220px;align-items:center;padding:11px 18px;border-bottom:1px solid #F2F0EA">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div style="width:24px;height:24px;border-radius:6px;background:{{ u.avatarBg }};color:{{ u.avatarFg }};display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:600">{{ u.initials }}</div>
+                  <span style="font-size:12.5px;color:#15192A;font-weight:500">{{ u.name }}</span>
+                </div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8B8E99">{{ u.email }}</div>
+                <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;color:#15192A;font-weight:600">{{ u.actions }}</div>
+                <div style="padding-left:18px;display:flex;gap:4px;flex-wrap:wrap">
+                  <sc-for list="{{ u.modules }}" as="m" hint-placeholder-count="3">
+                    <span style="font-size:10.5px;background:#F2F0EA;color:#4A5060;padding:2px 7px;border-radius:4px;font-weight:500">{{ m }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ━━━━━━━━━━━ SETTINGS ━━━━━━━━━━━ -->
+    <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+      <div style="flex:1;overflow-y:auto;background:#FAFAF7">
+
+        <!-- Top bar -->
+        <div style="display:flex;align-items:center;padding:20px 32px 14px 32px;gap:14px;border-bottom:1px solid #ECE9E2;background:#FFFFFF;position:sticky;top:0;z-index:10">
+          <div>
+            <h1 style="margin:0;font-size:18px;font-weight:600;letter-spacing:-0.3px;color:#15192A">Settings</h1>
+            <div style="font-size:12px;color:#8B8E99;margin-top:2px">Connections, user mapping, and credentials</div>
+          </div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:10px;font-size:12px;color:#8B8E99">
+            <span style="display:inline-flex;align-items:center;gap:6px">
+              <span style="width:6px;height:6px;border-radius:50%;background:#5BCC8F"></span>
+              All systems connected
+            </span>
+          </div>
+        </div>
+
+        <div style="padding:20px 32px 24px 32px;display:flex;flex-direction:column;gap:22px;max-width:1180px">
+
+          <!-- Section: Connections -->
+          <div>
+            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+              <div style="font-size:11px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:1.2px">Connections</div>
+              <div style="flex:1;height:1px;background:#ECE9E2"></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+              <!-- Odoo card -->
+              <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:18px 20px">
+                <div style="display:flex;align-items:center;gap:11px;padding-bottom:12px;border-bottom:1px solid #ECE9E2;margin-bottom:14px">
+                  <div style="width:32px;height:32px;border-radius:7px;background:#7B2C8C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">O</div>
+                  <div>
+                    <div style="font-size:13px;font-weight:600;color:#15192A">Odoo Connection</div>
+                    <div style="font-size:11.5px;color:#8B8E99">ERP user activity source</div>
+                  </div>
+                  <span style="margin-left:auto;display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:5px;background:#E5F0EA;color:#2A7F5C;font-size:11px;font-weight:600">
+                    <span style="width:5px;height:5px;border-radius:50%;background:#2A7F5C"></span>
+                    Connected · UID 18
+                  </span>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <div>
+                    <label style="display:block;font-size:11px;color:#8B8E99;font-weight:500;margin-bottom:4px">Host URL</label>
+                    <input type="text" value="https://ashwheelz.odoo.com" style="width:100%;padding:8px 11px;border:1px solid #ECE9E2;border-radius:7px;font-size:12.5px;color:#15192A;background:#FBFAF6;outline:none;font-family:'JetBrains Mono',monospace">
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                    <div>
+                      <label style="display:block;font-size:11px;color:#8B8E99;font-weight:500;margin-bottom:4px">Database</label>
+                      <input type="text" value="ashwheelz-prod" style="width:100%;padding:8px 11px;border:1px solid #ECE9E2;border-radius:7px;font-size:12.5px;color:#15192A;background:#FBFAF6;outline:none;font-family:'JetBrains Mono',monospace">
+                    </div>
+                    <div>
+                      <label style="display:block;font-size:11px;color:#8B8E99;font-weight:500;margin-bottom:4px">Username</label>
+                      <input type="text" value="hr@ashwheelz.com" style="width:100%;padding:8px 11px;border:1px solid #ECE9E2;border-radius:7px;font-size:12.5px;color:#15192A;background:#FBFAF6;outline:none">
+                    </div>
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:11px;color:#8B8E99;font-weight:500;margin-bottom:4px">Password</label>
+                    <input type="password" value="●●●●●●●●●●●●" style="width:100%;padding:8px 11px;border:1px solid #ECE9E2;border-radius:7px;font-size:12.5px;color:#15192A;background:#FBFAF6;outline:none;font-family:'JetBrains Mono',monospace;letter-spacing:2px">
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:11px;color:#8B8E99;font-weight:500;margin-bottom:4px">Company filter</label>
+                    <div style="display:flex;gap:8px">
+                      <select style="flex:1;padding:8px 11px;border:1px solid #ECE9E2;border-radius:7px;font-size:12.5px;color:#15192A;background:#FBFAF6;outline:none">
+                        <option>All Companies</option>
+                        <option>Ashwheelz Trading</option>
+                        <option>Ashwheelz Logistics</option>
+                      </select>
+                      <button style="padding:8px 12px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;color:#4A5060;font-size:12.5px">Load</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #ECE9E2">
+                  <button style="padding:7px 13px;border:0;border-radius:7px;background:#15192A;color:#fff;font-size:12.5px;font-weight:500">Save config</button>
+                  <button style="padding:7px 13px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;color:#4A5060;font-size:12.5px;font-weight:500">Test connection</button>
+                  <span style="margin-left:auto;display:inline-flex;align-items:center;gap:5px;color:#2A7F5C;font-size:11.5px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                    Last test passed · 14:22
+                  </span>
+                </div>
+              </div>
+
+              <!-- TimeDoctor card -->
+              <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:18px 20px">
+                <div style="display:flex;align-items:center;gap:11px;padding-bottom:12px;border-bottom:1px solid #ECE9E2;margin-bottom:14px">
+                  <div style="width:32px;height:32px;border-radius:7px;background:#ED6B17;color:#fff;display:flex;align-items:center;justify-content:center">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15.5 14"></polyline></svg>
+                  </div>
+                  <div>
+                    <div style="font-size:13px;font-weight:600;color:#15192A">TimeDoctor Credentials</div>
+                    <div style="font-size:11.5px;color:#8B8E99">Activity tracking source</div>
+                  </div>
+                  <span style="margin-left:auto;display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:5px;background:#E5F0EA;color:#2A7F5C;font-size:11px;font-weight:600">
+                    <span style="width:5px;height:5px;border-radius:50%;background:#2A7F5C"></span>
+                    Token saved · 47h
+                  </span>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <div>
+                    <label style="display:block;font-size:11px;color:#8B8E99;font-weight:500;margin-bottom:4px">Email</label>
+                    <input type="email" value="hr@ashwheelz.com" style="width:100%;padding:8px 11px;border:1px solid #ECE9E2;border-radius:7px;font-size:12.5px;color:#15192A;background:#FBFAF6;outline:none">
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:11px;color:#8B8E99;font-weight:500;margin-bottom:4px">Password</label>
+                    <input type="password" value="●●●●●●●●●●●●" style="width:100%;padding:8px 11px;border:1px solid #ECE9E2;border-radius:7px;font-size:12.5px;color:#15192A;background:#FBFAF6;outline:none;font-family:'JetBrains Mono',monospace;letter-spacing:2px">
+                  </div>
+
+                  <div style="margin-top:4px;padding:11px 13px;background:#FBF7EE;border:1px solid #F0E4CC;border-radius:7px">
+                    <div style="display:flex;align-items:flex-start;gap:9px">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="2.2" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                      <div style="font-size:11.5px;color:#7C5310;line-height:1.5">
+                        Token auto-refreshes 12h before expiry. Re-login only if reports show "TimeDoctor session expired" in the activity log.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #ECE9E2">
+                  <button style="padding:7px 13px;border:0;border-radius:7px;background:#ED6B17;color:#fff;font-size:12.5px;font-weight:600">Login to TimeDoctor</button>
+                  <button style="padding:7px 13px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;color:#4A5060;font-size:12.5px;font-weight:500">Paste token instead</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: User mapping -->
+          <div>
+            <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+              <div style="font-size:11px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:1.2px">User mapping</div>
+              <div style="flex:1;height:1px;background:#ECE9E2"></div>
+              <span style="font-size:11.5px;color:#8B8E99">38 of 42 linked</span>
+            </div>
+
+            <div style="background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden">
+
+              <div style="display:flex;align-items:flex-start;gap:11px;padding:13px 18px;background:#F4F8F2;border-bottom:1px solid #ECE9E2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A7F5C" stroke-width="2" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9"></circle><path d="M9 12l2 2 4-4"></path></svg>
+                <div style="font-size:11.5px;color:#1F5C42;line-height:1.55;flex:1">
+                  Select one user from each list, then click <strong style="font-weight:600">Link</strong>. Mapped users appear in green with their pairing. Names sync from each platform's roster — refresh both sides if a new hire is missing.
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 132px 1fr">
+
+                <!-- Odoo column -->
+                <div style="border-right:1px solid #ECE9E2;display:flex;flex-direction:column">
+                  <div style="padding:11px 16px;background:#FBFAF6;border-bottom:1px solid #ECE9E2;display:flex;align-items:center;gap:9px">
+                    <div style="width:18px;height:18px;border-radius:5px;background:#7B2C8C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700">O</div>
+                    <span style="font-size:12px;font-weight:600;color:#15192A">Odoo users</span>
+                    <span style="margin-left:auto;font-size:11px;color:#8B8E99;font-family:'JetBrains Mono',monospace">42</span>
+                  </div>
+                  <div style="padding:9px 14px;border-bottom:1px solid #ECE9E2;background:#FFFFFF">
+                    <div style="display:flex;align-items:center;gap:6px;padding:6px 9px;background:#FBFAF6;border-radius:6px">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8B8E99" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+                      <input type="text" placeholder="Filter Odoo users…" style="border:0;background:transparent;outline:none;flex:1;font-size:12px;color:#15192A">
+                    </div>
+                  </div>
+                  <div style="max-height:380px;overflow-y:auto">
+                    <sc-for list="{{ odooUsers }}" as="u" hint-placeholder-count="8">
+                      <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid #F4F2EC;background:{{ u.bg }};cursor:pointer">
+                        <div style="width:24px;height:24px;border-radius:6px;background:{{ u.avatarBg }};color:{{ u.avatarFg }};display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:600;flex:none">{{ u.initials }}</div>
+                        <div style="flex:1;min-width:0">
+                          <div style="font-size:12.5px;font-weight:{{ u.weight }};color:{{ u.nameColor }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ u.name }}</div>
+                          <div style="font-size:11px;color:#8B8E99;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'JetBrains Mono',monospace">{{ u.email }}</div>
+                        </div>
+                        <sc-if value="{{ u.linkedTo }}" hint-placeholder-val="{{ false }}">
+                          <span style="font-size:10.5px;color:#2A7F5C;background:#E5F0EA;padding:2px 6px;border-radius:4px;font-weight:600;white-space:nowrap">linked</span>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+
+                <!-- Center actions -->
+                <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px;gap:9px;background:#FBFAF6;border-right:1px solid #ECE9E2">
+                  <button style="width:100%;padding:9px 12px;border:0;border-radius:7px;background:#ED6B17;color:#fff;font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 1 0-7-7l-1 1"></path><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 1 0 7 7l1-1"></path></svg>
+                    Link
+                  </button>
+                  <button style="width:100%;padding:8px 12px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;color:#B23A2F;font-size:12.5px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:6px">
+                    Unlink
+                  </button>
+                  <div style="width:60%;height:1px;background:#ECE9E2;margin:4px 0"></div>
+                  <button style="width:100%;padding:7px 10px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;color:#4A5060;font-size:11.5px;line-height:1.35">Auto-match by email</button>
+                  <button style="width:100%;padding:7px 10px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;color:#4A5060;font-size:11.5px;line-height:1.35">Reload Odoo roster</button>
+                </div>
+
+                <!-- TD column -->
+                <div style="display:flex;flex-direction:column">
+                  <div style="padding:11px 16px;background:#FBFAF6;border-bottom:1px solid #ECE9E2;display:flex;align-items:center;gap:9px">
+                    <div style="width:18px;height:18px;border-radius:5px;background:#ED6B17;color:#fff;display:flex;align-items:center;justify-content:center">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15.5 14"></polyline></svg>
+                    </div>
+                    <span style="font-size:12px;font-weight:600;color:#15192A">TimeDoctor employees</span>
+                    <span style="margin-left:auto;font-size:11px;color:#8B8E99;font-family:'JetBrains Mono',monospace">40</span>
+                  </div>
+                  <div style="padding:9px 14px;border-bottom:1px solid #ECE9E2;background:#FFFFFF">
+                    <div style="display:flex;align-items:center;gap:6px;padding:6px 9px;background:#FBFAF6;border-radius:6px">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8B8E99" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+                      <input type="text" placeholder="Filter TD employees…" style="border:0;background:transparent;outline:none;flex:1;font-size:12px;color:#15192A">
+                    </div>
+                  </div>
+                  <div style="max-height:380px;overflow-y:auto">
+                    <sc-for list="{{ tdUsers }}" as="u" hint-placeholder-count="8">
+                      <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid #F4F2EC;background:{{ u.bg }};cursor:pointer">
+                        <div style="width:24px;height:24px;border-radius:6px;background:{{ u.avatarBg }};color:{{ u.avatarFg }};display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:600;flex:none">{{ u.initials }}</div>
+                        <div style="flex:1;min-width:0">
+                          <div style="font-size:12.5px;font-weight:{{ u.weight }};color:{{ u.nameColor }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ u.name }}</div>
+                          <sc-if value="{{ u.linkedTo }}" hint-placeholder-val="{{ false }}">
+                            <div style="font-size:11px;color:#2A7F5C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">→ {{ u.linkedTo }}</div>
+                          </sc-if>
+                          <sc-if value="{{ u.unlinked }}" hint-placeholder-val="{{ false }}">
+                            <div style="font-size:11px;color:#B7791F;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">unmapped</div>
+                          </sc-if>
+                        </div>
+                        <sc-if value="{{ u.linkedTo }}" hint-placeholder-val="{{ false }}">
+                          <span style="font-size:10.5px;color:#2A7F5C;background:#E5F0EA;padding:2px 6px;border-radius:4px;font-weight:600;white-space:nowrap">linked</span>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </sc-if>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 900 },
+  &quot;page&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;dashboard&quot;, &quot;reports&quot;, &quot;settings&quot;], &quot;default&quot;: &quot;dashboard&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  state = { page: null };
+
+  // Use prop as the source of truth when set, otherwise local state default.
+  _page() {
+    return this.state.page ?? this.props.page ?? 'dashboard';
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.page !== this.props.page) {
+      this.setState({ page: null }); // re-yield to prop
+    }
+  }
+
+  // ── Deterministic helpers ───────────────────────────────────────
+  _hash(s) {
+    let h = 0;
+    for (let i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) | 0; }
+    return Math.abs(h);
+  }
+
+  _avatarColors(name) {
+    const palettes = [
+      { bg: '#F4E4D6', fg: '#9A4B1A' },
+      { bg: '#E0E8F4', fg: '#28457E' },
+      { bg: '#E4EFE3', fg: '#2D6A3F' },
+      { bg: '#F2E4EE', fg: '#7B2C8C' },
+      { bg: '#F4EBD6', fg: '#8C6A1F' },
+      { bg: '#E0EAEC', fg: '#2A5C66' },
+      { bg: '#EFE3E1', fg: '#8C3E2C' },
+    ];
+    return palettes[this._hash(name) % palettes.length];
+  }
+
+  _initials(name) {
+    const parts = name.split(/[\s-]+/).filter(Boolean);
+    if (parts.length === 0) return '?';
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+
+  // ── Employee data (used by Dashboard) ───────────────────────────
+  _employees() {
+    const raw = [
+      { name: 'Ahmed Al-Rashid',  role: 'Operations Manager', hours: '8:42', activeMin: 412, idleMin: 38, nonProdMin: 12, nonprod: '0:12', score: 94, odoo: 287, tag: 'good',  pattern: 'steady' },
+      { name: 'Noura Al-Qasim',   role: 'Sales Lead',         hours: '8:18', activeMin: 388, idleMin: 52, nonProdMin: 22, nonprod: '0:22', score: 89, odoo: 412, tag: 'good',  pattern: 'spiky' },
+      { name: 'Layla Ibrahim',    role: 'Accounts',           hours: '8:05', activeMin: 372, idleMin: 71, nonProdMin: 14, nonprod: '0:14', score: 86, odoo: 198, tag: 'good',  pattern: 'morning' },
+      { name: 'Yusuf Hakim',      role: 'Fleet Coordinator',  hours: '7:54', activeMin: 354, idleMin: 88, nonProdMin: 16, nonprod: '0:16', score: 82, odoo: 224, tag: 'good',  pattern: 'steady' },
+      { name: 'Sara Mansour',     role: 'HR Specialist',      hours: '8:12', activeMin: 366, idleMin: 92, nonProdMin: 24, nonprod: '0:24', score: 79, odoo: 156, tag: 'good',  pattern: 'afternoon' },
+      { name: 'Khaled Faris',     role: 'Procurement',        hours: '7:48', activeMin: 322, idleMin: 96, nonProdMin: 28, nonprod: '0:28', score: 74, odoo: 174, tag: 'good',  pattern: 'steady' },
+      { name: 'Fatima Saeed',     role: 'Customer Service',   hours: '8:00', activeMin: 296, idleMin: 124, nonProdMin: 36, nonprod: '0:36', score: 66, odoo: 248, tag: 'warn',  pattern: 'morning' },
+      { name: 'Hala Naser',       role: 'Finance',            hours: '7:34', activeMin: 268, idleMin: 142, nonProdMin: 34, nonprod: '0:34', score: 62, odoo: 119, tag: 'warn',  pattern: 'spiky' },
+      { name: 'Tareq Salem',      role: 'Fleet Maintenance',  hours: '6:58', activeMin: 232, idleMin: 144, nonProdMin: 48, nonprod: '0:48', score: 54, odoo: 87,  tag: 'warn',  pattern: 'afternoon' },
+      { name: 'Mohammed Khalil',  role: 'Dispatch',           hours: '7:20', activeMin: 196, idleMin: 184, nonProdMin: 60, nonprod: '1:00', score: 42, odoo: 64,  tag: 'danger',pattern: 'gappy' },
+      { name: 'Reem Hadi',        role: 'Marketing',          hours: '6:42', activeMin: 168, idleMin: 168, nonProdMin: 66, nonprod: '1:06', score: 38, odoo: 41,  tag: 'danger',pattern: 'gappy' },
+      { name: 'Omar Ziyad',       role: 'IT Support',         hours: '—',    activeMin: 0,   idleMin: 0,   nonProdMin: 0,  nonprod: '—',    score: 0,  odoo: 0,   tag: 'absent',pattern: 'absent' },
+    ];
+
+    const tagStyles = {
+      good:   { bg: '#E5F0EA', fg: '#1F5C42', dot: '#2A7F5C', label: 'Healthy' },
+      warn:   { bg: '#FBF1DB', fg: '#7C5310', dot: '#B7791F', label: 'Warn' },
+      danger: { bg: '#FAE4E1', fg: '#7B281F', dot: '#B23A2F', label: 'High idle' },
+      absent: { bg: '#F2F0EA', fg: '#8B8E99', dot: '#B5B7BD', label: 'Absent' },
+    };
+
+    const patterns = {
+      steady:    [70, 78, 84, 82, 72, 88, 90, 82, 75],
+      spiky:     [55, 92, 48, 88, 35, 95, 62, 90, 50],
+      morning:   [92, 95, 88, 80, 60, 50, 42, 38, 30],
+      afternoon: [42, 48, 55, 60, 70, 82, 90, 88, 85],
+      gappy:     [60, 25, 50, 20, 70, 18, 45, 22, 38],
+      absent:    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    };
+
+    return raw.map((e) => {
+      const total = Math.max(e.activeMin + e.idleMin + e.nonProdMin, 1);
+      const aw = (e.activeMin / total) * 100;
+      const iw = (e.idleMin / total) * 100;
+      const nw = (e.nonProdMin / total) * 100;
+      const ac = this._avatarColors(e.name);
+      const st = tagStyles[e.tag];
+
+      // Score band → color
+      let scoreRing = '#2A7F5C', scoreBg = '#E5F0EA', scoreFg = '#1F5C42', scoreLetter = 'A';
+      if (e.score === 0)           { scoreRing = '#B5B7BD'; scoreBg = '#F2F0EA'; scoreFg = '#8B8E99'; scoreLetter = '—'; }
+      else if (e.score >= 85)      { scoreRing = '#2A7F5C'; scoreBg = '#E5F0EA'; scoreFg = '#1F5C42'; scoreLetter = 'A'; }
+      else if (e.score >= 70)      { scoreRing = '#4D9E72'; scoreBg = '#EAF3EE'; scoreFg = '#2F6249'; scoreLetter = 'B'; }
+      else if (e.score >= 55)      { scoreRing = '#B7791F'; scoreBg = '#FBF1DB'; scoreFg = '#7C5310'; scoreLetter = 'C'; }
+      else if (e.score >= 40)      { scoreRing = '#C77A0E'; scoreBg = '#FBE7D4'; scoreFg = '#7C4A0D'; scoreLetter = 'D'; }
+      else                          { scoreRing = '#B23A2F'; scoreBg = '#FAE4E1'; scoreFg = '#7B281F'; scoreLetter = 'F'; }
+
+      // Bars: intensity → height + color
+      const intensities = patterns[e.pattern] || patterns.steady;
+      const bars = intensities.map((v) => {
+        let color = '#E5C46A';
+        if (v === 0) color = '#F2F0EA';
+        else if (v >= 75) color = '#2A7F5C';
+        else if (v >= 50) color = '#4D9E72';
+        else if (v >= 30) color = '#B7791F';
+        else if (v > 0)   color = '#D67E5E';
+        const h = v === 0 ? '12%' : `${Math.max(15, v)}%`;
+        return { h, color };
+      });
+
+      const fmt = (m) => {
+        if (m === 0 && e.tag === 'absent') return '—';
+        const h = Math.floor(m / 60), mm = m % 60;
+        return `${h}:${String(mm).padStart(2, '0')}`;
+      };
+
+      return {
+        name: e.name,
+        role: e.role,
+        initials: this._initials(e.name),
+        avatarBg: ac.bg,
+        avatarFg: ac.fg,
+        statusBg: st.bg,
+        statusFg: st.fg,
+        statusDot: st.dot,
+        statusLabel: st.label,
+        hours: e.hours,
+        hoursColor: e.tag === 'absent' ? '#B5B7BD' : '#15192A',
+        activeW: `${aw.toFixed(1)}%`,
+        idleW: `${iw.toFixed(1)}%`,
+        nonProdW: `${nw.toFixed(1)}%`,
+        activeLabel: e.tag === 'absent' ? '—' : fmt(e.activeMin),
+        idleLabel: e.tag === 'absent' ? '—' : fmt(e.idleMin),
+        nonprod: e.nonprod,
+        nonprodColor: e.nonProdMin >= 40 ? '#B23A2F' : (e.nonProdMin >= 20 ? '#B7791F' : '#4A5060'),
+        score: e.score === 0 ? '—' : String(e.score),
+        scoreRing, scoreBg, scoreFg, scoreLetter,
+        bars,
+        odoo: e.odoo === 0 ? '—' : String(e.odoo),
+        odooColor: e.odoo === 0 ? '#B5B7BD' : '#15192A',
+      };
+    });
+  }
+
+  // ── Reports data ────────────────────────────────────────────────
+  _weekBars() {
+    const days = [
+      { day: 'Mon', total: '298h', active: 218, idle: 62, nonProd: 18 },
+      { day: 'Tue', total: '312h', active: 234, idle: 58, nonProd: 20 },
+      { day: 'Wed', total: '289h', active: 211, idle: 60, nonProd: 18 },
+      { day: 'Thu', total: '305h', active: 232, idle: 54, nonProd: 19 },
+      { day: 'Fri', total: '266h', active: 192, idle: 56, nonProd: 18 },
+      { day: 'Sat', total: '224h', active: 168, idle: 42, nonProd: 14 },
+      { day: 'Today', total: '153h', active: 116, idle: 28, nonProd: 9, current: true },
+    ];
+    const max = 320;
+    return days.map((d) => ({
+      day: d.day,
+      total: d.total,
+      activeH: `${(d.active / max * 100).toFixed(1)}%`,
+      idleH: `${(d.idle / max * 100).toFixed(1)}%`,
+      nonProdH: `${(d.nonProd / max * 100).toFixed(1)}%`,
+      weight: d.current ? '600' : '500',
+    }));
+  }
+
+  _attention() {
+    const list = [
+      { name: 'Mohammed Khalil', note: 'Dispatch · 3-day idle trend ↑',     idle: '3:04', nonprod: '1:00', score: 42 },
+      { name: 'Reem Hadi',       note: 'Marketing · gaps 11:00–14:30',      idle: '2:48', nonprod: '1:06', score: 38 },
+      { name: 'Tareq Salem',     note: 'Fleet Maint. · low afternoon',       idle: '2:24', nonprod: '0:48', score: 54 },
+      { name: 'Hala Naser',      note: 'Finance · spiky activity',          idle: '2:22', nonprod: '0:34', score: 62 },
+      { name: 'Fatima Saeed',    note: 'Customer Service · 4-day trend ↓',   idle: '2:04', nonprod: '0:36', score: 66 },
+    ];
+    return list.map((e) => {
+      const ac = this._avatarColors(e.name);
+      let scoreBg = '#FAE4E1', scoreFg = '#7B281F';
+      if (e.score >= 60) { scoreBg = '#FBF1DB'; scoreFg = '#7C5310'; }
+      if (e.score >= 70) { scoreBg = '#FBE7D4'; scoreFg = '#7C4A0D'; }
+      return { ...e, initials: this._initials(e.name), avatarBg: ac.bg, avatarFg: ac.fg, scoreBg, scoreFg };
+    });
+  }
+
+  _topPerformers() {
+    const list = [
+      { rank: '1', name: 'Ahmed Al-Rashid',  role: 'Operations Manager', pct: '94%' },
+      { rank: '2', name: 'Noura Al-Qasim',   role: 'Sales Lead',         pct: '91%' },
+      { rank: '3', name: 'Layla Ibrahim',    role: 'Accounts',           pct: '88%' },
+      { rank: '4', name: 'Yusuf Hakim',      role: 'Fleet Coordinator',  pct: '85%' },
+      { rank: '5', name: 'Sara Mansour',     role: 'HR Specialist',      pct: '82%' },
+    ];
+    return list.map((e) => ({ ...e, initials: this._initials(e.name), ...this._avatarColors(e.name) }))
+               .map((e) => ({ ...e, avatarBg: e.bg, avatarFg: e.fg }));
+  }
+
+  _heatmap() {
+    const heat = ['#F2F0EA', '#D0E1D6', '#8FBE9F', '#4D9E72', '#1E6E4A'];
+    const names = ['Ahmed Al-Rashid', 'Noura Al-Qasim', 'Layla Ibrahim', 'Yusuf Hakim', 'Sara Mansour', 'Fatima Saeed', 'Mohammed Khalil', 'Reem Hadi'];
+    const intensities = [
+      [3, 4, 4, 3, 2, 4, 4, 3, 3, 2],
+      [2, 3, 4, 3, 2, 1, 4, 4, 3, 3],
+      [4, 4, 3, 2, 1, 3, 4, 3, 2, 1],
+      [3, 3, 3, 2, 2, 3, 3, 4, 3, 2],
+      [3, 4, 3, 2, 2, 2, 3, 3, 4, 3],
+      [4, 3, 2, 1, 1, 2, 3, 2, 1, 0],
+      [2, 1, 1, 0, 0, 0, 2, 1, 0, 0],
+      [1, 2, 0, 0, 1, 0, 1, 2, 1, 0],
+    ];
+    return names.map((n, i) => ({
+      name: n,
+      cells: intensities[i].map((v) => heat[v]),
+    }));
+  }
+
+  _odooDetail() {
+    const list = [
+      { name: 'Ahmed Al-Rashid',  email: 'ahmed.r@ashwheelz.com',     actions: '287', modules: ['Sales', 'Inventory', 'Fleet'] },
+      { name: 'Noura Al-Qasim',   email: 'noura.q@ashwheelz.com',     actions: '412', modules: ['CRM', 'Sales'] },
+      { name: 'Layla Ibrahim',    email: 'layla.i@ashwheelz.com',     actions: '198', modules: ['Accounting', 'Invoicing'] },
+      { name: 'Yusuf Hakim',      email: 'yusuf.h@ashwheelz.com',     actions: '224', modules: ['Fleet', 'Maintenance'] },
+      { name: 'Sara Mansour',     email: 'sara.m@ashwheelz.com',      actions: '156', modules: ['HR', 'Recruitment'] },
+      { name: 'Khaled Faris',     email: 'khaled.f@ashwheelz.com',    actions: '174', modules: ['Purchase', 'Inventory'] },
+    ];
+    return list.map((u) => {
+      const ac = this._avatarColors(u.name);
+      return { ...u, initials: this._initials(u.name), avatarBg: ac.bg, avatarFg: ac.fg };
+    });
+  }
+
+  // ── Settings: mapping lists ─────────────────────────────────────
+  _odooMappingUsers() {
+    const list = [
+      { name: 'Ahmed Al-Rashid',  email: 'ahmed.r@ashwheelz.com',     linkedTo: 'Ahmed Rashid' },
+      { name: 'Noura Al-Qasim',   email: 'noura.q@ashwheelz.com',     linkedTo: 'Noura AlQasim',  selected: true },
+      { name: 'Layla Ibrahim',    email: 'layla.i@ashwheelz.com',     linkedTo: 'Layla I.' },
+      { name: 'Yusuf Hakim',      email: 'yusuf.h@ashwheelz.com',     linkedTo: 'Yusuf H' },
+      { name: 'Sara Mansour',     email: 'sara.m@ashwheelz.com',      linkedTo: 'Sara M.' },
+      { name: 'Khaled Faris',     email: 'khaled.f@ashwheelz.com',    linkedTo: null },
+      { name: 'Fatima Saeed',     email: 'fatima.s@ashwheelz.com',    linkedTo: 'Fatima Saeed' },
+      { name: 'Omar Ziyad',       email: 'omar.z@ashwheelz.com',      linkedTo: null },
+    ];
+    return list.map((u) => {
+      const ac = this._avatarColors(u.name);
+      const isLinked = !!u.linkedTo;
+      return {
+        name: u.name,
+        email: u.email,
+        initials: this._initials(u.name),
+        avatarBg: ac.bg,
+        avatarFg: ac.fg,
+        linkedTo: u.linkedTo,
+        bg: u.selected ? '#FCEEDF' : (isLinked ? '#FBFCFA' : '#FFFFFF'),
+        nameColor: isLinked ? '#1F5C42' : '#15192A',
+        weight: u.selected ? '600' : '500',
+      };
+    });
+  }
+
+  _tdMappingUsers() {
+    const list = [
+      { name: 'Ahmed Rashid',      linkedTo: 'ahmed.r@ashwheelz.com' },
+      { name: 'Noura AlQasim',     linkedTo: 'noura.q@ashwheelz.com', selected: true },
+      { name: 'Layla I.',          linkedTo: 'layla.i@ashwheelz.com' },
+      { name: 'Yusuf H',           linkedTo: 'yusuf.h@ashwheelz.com' },
+      { name: 'Sara M.',           linkedTo: 'sara.m@ashwheelz.com' },
+      { name: 'Fatima Saeed',      linkedTo: 'fatima.s@ashwheelz.com' },
+      { name: 'M. Khalil',         linkedTo: null, unlinked: true },
+      { name: 'reem.h',            linkedTo: null, unlinked: true },
+    ];
+    return list.map((u) => {
+      const ac = this._avatarColors(u.name);
+      const isLinked = !!u.linkedTo;
+      return {
+        name: u.name,
+        initials: this._initials(u.name),
+        avatarBg: ac.bg,
+        avatarFg: ac.fg,
+        linkedTo: u.linkedTo,
+        unlinked: !!u.unlinked,
+        bg: u.selected ? '#FCEEDF' : (isLinked ? '#FBFCFA' : '#FFFFFF'),
+        nameColor: isLinked ? '#1F5C42' : '#15192A',
+        weight: u.selected ? '600' : '500',
+      };
+    });
+  }
+
+  // ── renderVals ──────────────────────────────────────────────────
+  renderVals() {
+    const page = this._page();
+    const go = (p) => () => this.setState({ page: p });
+
+    const navIconDash = React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
+      React.createElement('rect', { x: 3, y: 3, width: 7, height: 9, rx: 1 }),
+      React.createElement('rect', { x: 14, y: 3, width: 7, height: 5, rx: 1 }),
+      React.createElement('rect', { x: 14, y: 12, width: 7, height: 9, rx: 1 }),
+      React.createElement('rect', { x: 3, y: 16, width: 7, height: 5, rx: 1 })
+    );
+    const navIconReports = React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
+      React.createElement('path', { d: 'M3 17l6-6 4 4 8-8' }),
+      React.createElement('path', { d: 'M14 7h7v7' })
+    );
+    const navIconSettings = React.createElement('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
+      React.createElement('circle', { cx: 12, cy: 12, r: 3 }),
+      React.createElement('path', { d: 'M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z' })
+    );
+
+    const navItem = (id, label, icon, badge) => ({
+      label, icon, badge,
+      onClick: go(id),
+      bg: page === id ? '#1A2748' : 'transparent',
+      color: page === id ? '#FFFFFF' : '#A8B2CC',
+      weight: page === id ? '600' : '500',
+    });
+
+    // Filter chips
+    const filters = [
+      { label: 'All',          count: '42', hasDot: false, active: true,  tag: null },
+      { label: 'Healthy',      count: '32', hasDot: true,  active: false, tag: 'good',   dotColor: '#2A7F5C' },
+      { label: 'Warn',         count: '3',  hasDot: true,  active: false, tag: 'warn',   dotColor: '#B7791F' },
+      { label: 'High idle',    count: '2',  hasDot: true,  active: false, tag: 'danger', dotColor: '#B23A2F' },
+      { label: 'Absent',       count: '5',  hasDot: true,  active: false, tag: 'absent', dotColor: '#B5B7BD' },
+    ];
+    const filterChips = filters.map((f) => ({
+      label: f.label,
+      count: f.count,
+      hasDot: f.hasDot,
+      dotColor: f.dotColor || '#B5B7BD',
+      onClick: () => {},
+      bg: f.active ? '#15192A' : '#FFFFFF',
+      color: f.active ? '#FFFFFF' : '#4A5060',
+      borderColor: f.active ? '#15192A' : '#ECE9E2',
+      countColor: f.active ? '#A8B2CC' : '#8B8E99',
+      weight: f.active ? '600' : '500',
+    }));
+
+    return {
+      isDashboard: page === 'dashboard',
+      isReports:   page === 'reports',
+      isSettings:  page === 'settings',
+      navItems: [
+        navItem('dashboard', 'Dashboard', navIconDash),
+        navItem('reports',   'Reports',   navIconReports),
+        navItem('settings',  'Settings',  navIconSettings, '5'),
+      ],
+      filters: filterChips,
+      employees: this._employees(),
+      weekBars: this._weekBars(),
+      attention: this._attention(),
+      topPerformers: this._topPerformers(),
+      hourLabels: ['09', '10', '11', '12', '13', '14', '15', '16', '17', '18'],
+      heatmapRows: this._heatmap(),
+      odooDetail: this._odooDetail(),
+      odooUsers: this._odooMappingUsers(),
+      tdUsers: this._tdMappingUsers(),
+    };
+  }
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Doctor Bot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,sans-serif;background:#0F1A35;height:100vh;overflow:hidden;font-size:13px;color:#15192A}
+.app{display:flex;height:100vh}
+aside{width:218px;background:#0F1A35;display:flex;flex-direction:column;border-right:1px solid #1E2C4E;flex:none}
+.logo{padding:18px 14px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1E2C4E}
+.logo-mark{width:28px;height:28px;border-radius:7px;background:#ED6B17;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.logo-text{font-size:13px;font-weight:600;color:#E8EAF0}
+.logo-sub{font-size:10px;color:#5A6688;margin-top:1px}
+.nav{flex:1;padding:8px 0;overflow-y:auto}
+.nav-section-lbl{font-size:10px;font-weight:600;color:#5A6688;letter-spacing:1.2px;text-transform:uppercase;padding:16px 12px 5px}
+.nav-btn{width:calc(100% - 12px);display:flex;align-items:center;gap:9px;padding:9px 12px;border:0;background:transparent;color:#A8B2CC;font-size:12.5px;cursor:pointer;border-radius:7px;margin:1px 6px;text-align:left;font-family:inherit;transition:all .12s}
+.nav-btn:hover{background:#1A2748;color:#E8EAF0}
+.nav-btn.active{background:#1A2748;color:#fff;font-weight:600}
+.nav-btn svg{flex:none}
+.sidebar-today{padding:6px 10px;font-size:11.5px;color:#8A95B0;line-height:1.5}
+.sstat{display:flex;justify-content:space-between;padding:2px 0}
+.sstat-val{font-family:'JetBrains Mono',monospace;font-weight:500}
+.sidebar-footer{padding:13px 14px;border-top:1px solid #1E2C4E;font-size:11.5px}
+.sfoot-row{display:flex;align-items:center;gap:8px;color:#A8B2CC}
+.sfoot-url{color:#5A6688;font-size:10.5px;margin-top:4px;font-family:'JetBrains Mono',monospace}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 3px rgba(91,204,143,.15)}50%{box-shadow:0 0 0 5px rgba(91,204,143,.06)}}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#5BCC8F;box-shadow:0 0 0 3px rgba(91,204,143,.15);animation:pulseDot 2s ease-in-out infinite;flex:none}
+main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;background:#FAFAF7}
+.page{display:none;flex:1;flex-direction:column;overflow:hidden}
+.page.active{display:flex}
+.topbar{display:flex;align-items:center;padding:15px 28px 12px;gap:9px;border-bottom:1px solid #ECE9E2;background:#FFFFFF;flex:none;flex-wrap:wrap}
+.topbar h1{font-size:18px;font-weight:600;letter-spacing:-.3px;color:#15192A}
+.topbar-sub{font-size:12px;color:#8B8E99;margin-top:2px}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:7px;font-size:12.5px;font-family:inherit;cursor:pointer;border:0;transition:background .12s,opacity .12s;white-space:nowrap}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-primary{background:#ED6B17;color:#fff;font-weight:600}
+.btn-primary:hover:not(:disabled){background:#d45e0e}
+.btn-dark{background:#15192A;color:#fff;font-weight:500}
+.btn-dark:hover:not(:disabled){background:#1e2438}
+.btn-ghost{background:#FFFFFF;color:#4A5060;border:1px solid #ECE9E2}
+.btn-ghost:hover:not(:disabled){background:#F9F8F5}
+.btn-red{background:#FFFFFF;color:#B23A2F;border:1px solid #ECE9E2}
+.btn-sm{padding:6px 11px;font-size:12px}
+.page-scroll{flex:1;overflow-y:auto;padding:20px 28px 28px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.kpi-card{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:16px 18px}
+.kpi-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.kpi-label{font-size:11.5px;color:#8B8E99;font-weight:500;letter-spacing:.2px}
+.kpi-value{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:#15192A;letter-spacing:-.5px}
+.kpi-sub{font-size:11.5px;color:#8B8E99;margin-top:3px}
+.filter-row{display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.filter-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:7px;font-size:12.5px;cursor:pointer;border:1px solid #ECE9E2;background:#FFFFFF;color:#4A5060;font-family:inherit;transition:all .12s}
+.filter-chip.active{background:#15192A;color:#fff;border-color:#15192A;font-weight:600}
+.fc-dot{width:6px;height:6px;border-radius:50%}
+.fc-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8B8E99}
+.filter-chip.active .fc-count{color:#A8B2CC}
+.grp-row{display:flex;align-items:center;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.grp-label{font-size:10.5px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:.8px;white-space:nowrap}
+.grp-chip{display:inline-flex;align-items:center;padding:4px 9px;border-radius:5px;font-size:11.5px;cursor:pointer;border:1px solid #ECE9E2;background:#FFFFFF;color:#4A5060;font-family:inherit;transition:all .12s}
+.grp-chip.active{background:#1A2748;color:#fff;border-color:#1A2748;font-weight:600}
+.emp-table{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden}
+.emp-cols{grid-template-columns:240px 80px 90px 90px 1fr 85px 90px 170px 80px}
+.emp-header,.emp-row{display:grid;align-items:center;padding:10px 18px}
+.emp-header{background:#FBFAF6;border-bottom:1px solid #ECE9E2;font-size:10.5px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:.7px}
+.emp-row{border-bottom:1px solid #F2F0EA;transition:background .1s}
+.emp-row:hover{background:#FBFAF6}
+.emp-row:last-child{border-bottom:0}
+.avatar{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:600;flex:none;letter-spacing:.2px}
+.tag-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:500}
+.act-bar{display:flex;height:6px;border-radius:3px;overflow:hidden;background:#F2F0EA}
+.mini-bars{display:flex;gap:3px;align-items:flex-end;height:26px}
+.mini-bar{flex:1;border-radius:1.5px;min-height:2px}
+.score-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 8px 3px 5px;border-radius:14px}
+.score-ring{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9.5px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.emp-footer{display:flex;align-items:center;padding:11px 18px;background:#FBFAF6;font-size:11.5px;color:#8B8E99}
+.legend{display:flex;gap:16px}
+.legend-item{display:inline-flex;align-items:center;gap:6px}
+.legend-dot{width:8px;height:8px;border-radius:2px}
+.mono{font-family:'JetBrains Mono',monospace}
+.emp-name-link{cursor:pointer;color:#1A3A8F;font-weight:500;font-size:13px}
+.emp-name-link:hover{color:#ED6B17;text-decoration:underline}
+.g-tag{display:inline-block;padding:2px 6px;background:#EEF2FF;color:#3B4FC5;font-size:10px;border-radius:4px;font-weight:500;white-space:nowrap}
+.log-panel{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden;margin-top:16px}
+.log-header{display:flex;align-items:center;padding:12px 18px;border-bottom:1px solid #ECE9E2}
+.log-body{padding:8px 18px 14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.85;max-height:200px;overflow-y:auto}
+.log-entry{display:flex;gap:14px}
+.lt{color:#B5B7BD;flex:none}.lok{color:#2A7F5C;flex:none}.linfo{color:#4263CD;flex:none}.lwarn{color:#B7791F;flex:none}.lerr{color:#B23A2F;flex:none}
+.log-msg{color:#4A5060}
+/* Reports */
+.section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.section-title{font-size:11px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:1.2px;white-space:nowrap}
+.section-line{flex:1;height:1px;background:#ECE9E2}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.rcard{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:18px 20px}
+.rcard-title{font-size:13px;font-weight:600;color:#15192A;margin-bottom:14px}
+.ct-wrap{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden}
+.ct-scroll{overflow-x:auto}
+.ct-table{width:100%;border-collapse:collapse;min-width:920px}
+.ct-th{padding:10px 14px;background:#FBFAF6;font-size:10.5px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:.7px;text-align:left;border-bottom:1px solid #ECE9E2;white-space:nowrap}
+.ct-td{padding:11px 14px;border-bottom:1px solid #F2F0EA;font-size:12.5px;color:#15192A;vertical-align:middle}
+.ct-tr{transition:background .1s}
+.ct-tr:hover{background:#FBFAF6}
+.ct-tr:last-child .ct-td{border-bottom:0}
+.ct-name-link{cursor:pointer;color:#1A3A8F;font-weight:500}
+.ct-name-link:hover{color:#ED6B17;text-decoration:underline}
+.odoo-mod-chip{display:inline-block;padding:2px 6px;background:#EEF2FF;color:#3B4FC5;font-size:10px;border-radius:3px;font-weight:500;margin:1px 2px}
+.perf-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #F2F0EA}
+.perf-row:last-child{border-bottom:0}
+.perf-rank{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#8B8E99;width:18px;text-align:center;flex:none}
+.perf-bar-bg{height:4px;background:#F2F0EA;border-radius:2px;overflow:hidden;margin-top:5px}
+.perf-bar-fill{height:100%;border-radius:2px}
+.attn-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F2F0EA}
+.attn-row:last-child{border-bottom:0}
+.attn-note{font-size:11px;color:#8B8E99;margin-top:1px}
+.ava-sm{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:600;flex:none}
+/* Settings */
+.s-section{margin-bottom:28px}
+.s-divider{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.s-title{font-size:11px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:1.2px;white-space:nowrap}
+.s-line{flex:1;height:1px;background:#ECE9E2}
+.conn-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.conn-card{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:18px 20px}
+.conn-hdr{display:flex;align-items:center;gap:11px;padding-bottom:12px;border-bottom:1px solid #ECE9E2;margin-bottom:14px}
+.conn-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex:none}
+.conn-status{margin-left:auto;display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:600}
+.form-group{margin-bottom:10px}
+.form-label{display:block;font-size:11px;color:#8B8E99;font-weight:500;margin-bottom:4px}
+.form-input{width:100%;padding:8px 11px;border:1px solid #ECE9E2;border-radius:7px;font-size:12.5px;color:#15192A;background:#FBFAF6;outline:none;font-family:inherit}
+.form-input:focus{border-color:#93ADE8;background:#fff}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.conn-footer{display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #ECE9E2;align-items:center;flex-wrap:wrap}
+.infobox{margin-top:6px;padding:11px 13px;background:#FBF7EE;border:1px solid #F0E4CC;border-radius:7px;display:flex;align-items:flex-start;gap:9px;font-size:11.5px;color:#7C5310;line-height:1.5}
+.map-panel{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden}
+.map-hint{display:flex;align-items:flex-start;gap:9px;padding:13px 18px;background:#F4F8F2;border-bottom:1px solid #ECE9E2;font-size:11.5px;color:#1F5C42;line-height:1.55}
+.map-grid{display:grid;grid-template-columns:1fr 132px 1fr}
+.map-col{display:flex;flex-direction:column;border-right:1px solid #ECE9E2}
+.map-col:last-child{border-right:0}
+.map-col-hdr{padding:11px 16px;background:#FBFAF6;border-bottom:1px solid #ECE9E2;display:flex;align-items:center;gap:9px}
+.map-search-wrap{padding:9px 14px;border-bottom:1px solid #ECE9E2;background:#FFFFFF}
+.map-search{display:flex;align-items:center;gap:6px;padding:6px 9px;background:#FBFAF6;border-radius:6px}
+.map-search input{border:0;background:transparent;outline:none;flex:1;font-size:12px;color:#15192A;font-family:inherit}
+.map-list{max-height:380px;overflow-y:auto}
+.map-user{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #F4F2EC;cursor:pointer;transition:background .1s;border-left:3px solid transparent;user-select:none}
+.map-user:hover{background:#F5F3EF}
+.map-user.sel{background:#FFF3E8;border-left-color:#ED6B17}
+.map-radio{width:20px;height:20px;border-radius:50%;border:2px solid #D0CEC8;background:#FFFFFF;flex:none;display:flex;align-items:center;justify-content:center;transition:border-color .12s,background .12s;cursor:pointer;margin-right:2px}
+.map-radio:hover{border-color:#ED6B17}
+.map-radio-dot{width:8px;height:8px;border-radius:50%;background:#FFFFFF;display:none}
+.map-user.sel .map-radio{border-color:#ED6B17;background:#ED6B17}
+.map-user.sel .map-radio-dot{display:block}
+.linked-badge{font-size:10.5px;color:#2A7F5C;background:#E5F0EA;padding:2px 6px;border-radius:4px;font-weight:600;white-space:nowrap}
+.map-actions{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px;gap:9px;background:#FBFAF6;border-right:1px solid #ECE9E2}
+.map-divider-line{width:60%;height:1px;background:#ECE9E2;margin:4px 0}
+input[type=date]{font-family:'JetBrains Mono',monospace;font-size:12px;color:#15192A;background:#FFFFFF;border:1px solid #ECE9E2;border-radius:7px;padding:6px 10px;outline:none;cursor:pointer}
+input[type=date]:focus{border-color:#93ADE8}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(15,26,53,.55);backdrop-filter:blur(3px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-card{background:#FAFAF7;border-radius:14px;width:100%;max-width:800px;max-height:calc(100vh - 40px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.22)}
+.modal-hdr{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid #ECE9E2;background:#FFFFFF;flex:none;flex-wrap:wrap}
+.modal-body{flex:1;overflow-y:auto;padding:20px 22px 24px}
+.modal-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.m-kcard{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:9px;padding:13px 15px}
+.m-kcard-lbl{font-size:11px;color:#8B8E99;font-weight:500;margin-bottom:4px}
+.m-kcard-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:#15192A}
+.m-kcard-sub{font-size:11px;color:#8B8E99;margin-top:2px}
+.modal-section{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:9px;padding:15px 18px;margin-bottom:14px}
+.modal-section-title{font-size:11px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:.9px;margin-bottom:12px}
+.score-bar-wrap{height:8px;background:#F2F0EA;border-radius:4px;overflow:hidden;margin:6px 0}
+.score-bar-fill{height:100%;border-radius:4px}
+.odoo-entry-row{display:flex;align-items:flex-start;gap:12px;padding:7px 0;border-bottom:1px solid #F4F2EC;font-size:12px}
+.odoo-entry-row:last-child{border-bottom:0}
+.odoo-entry-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8B8E99;white-space:nowrap;flex:none;padding-top:1px;min-width:84px}
+.odoo-entry-mod{font-size:11px;color:#3B4FC5;background:#EEF2FF;padding:2px 6px;border-radius:3px;white-space:nowrap;flex:none}
+.odoo-entry-rec{color:#4A5060;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mod-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #F4F2EC}
+.mod-row:last-child{border-bottom:0}
+.mod-count{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#15192A}
+.toast{position:fixed;bottom:22px;right:22px;background:#15192A;color:#fff;padding:10px 16px;border-radius:8px;font-size:12.5px;z-index:200;display:none;max-width:340px;line-height:1.4;border-left:3px solid #5BCC8F}
+.toast.show{display:block;animation:fadeUp .2s}
+.toast.err{border-left-color:#B23A2F}.toast.warn{border-left-color:#B7791F}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite;vertical-align:middle}
+.spin-dark{border-color:rgba(0,0,0,.1)!important;border-top-color:#4A5060!important}
+.empty-state{padding:40px 24px;text-align:center;color:#8B8E99;font-size:12.5px}
+.empty-state svg{margin-bottom:10px;opacity:.35;display:block;margin-left:auto;margin-right:auto}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#D0CEC8;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#B0AEA8}
+/* Print */
+@media print{
+  body{height:auto;overflow:visible;background:#fff}
+  aside,.topbar,.log-panel,.filter-row,.grp-row,.emp-footer,
+  .toast{display:none!important}
+  .app{display:block!important}
+  .page{display:none!important;overflow:visible!important}
+  .modal-overlay{position:static!important;background:none!important;backdrop-filter:none!important;padding:0!important;display:none!important}
+  .modal-card{max-height:none!important;box-shadow:none!important;border:none!important}
+  body.print-report #page-reports{display:block!important}
+  body.print-report main{display:block!important;overflow:visible!important}
+  body.print-employee .modal-overlay{display:block!important}
+  body.print-employee .modal-hdr .btn{display:none!important}
+  body.print-employee main{display:none!important}
+  body.print-employee aside{display:none!important}
+  .ct-wrap,.emp-table,.rcard{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside>
+  <div class="logo">
+    <div class="logo-mark">TD</div>
+    <div>
+      <div class="logo-text">Time Doctor</div>
+      <div class="logo-sub">Odoo · Analytics Bot</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <div class="nav-section-lbl">Monitor</div>
+    <button class="nav-btn active" id="nav-dashboard" onclick="goto('dashboard')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-btn" id="nav-reports" onclick="goto('reports')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+      Reports
+    </button>
+    <div class="nav-section-lbl">Setup</div>
+    <button class="nav-btn" id="nav-settings" onclick="goto('settings')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </button>
+  </nav>
+  <div class="nav-section-lbl" style="padding-top:8px">Today</div>
+  <div class="sidebar-today">
+    <div class="sstat"><span>Tracked</span><span class="sstat-val" id="sb-tracked" style="color:#E8EAF0">—</span></div>
+    <div class="sstat"><span>Active</span><span class="sstat-val" id="sb-active" style="color:#7BCB9C">—</span></div>
+    <div class="sstat"><span>Attention</span><span class="sstat-val" id="sb-attn" style="color:#ED9C5F">—</span></div>
+  </div>
+  <div class="sidebar-footer">
+    <div class="sfoot-row"><span class="status-dot"></span>Server running · v5.5</div>
+    <div class="sfoot-url" id="sb-url">localhost:5000</div>
+  </div>
+</aside>
+
+<main>
+
+<!-- ════ DASHBOARD ════ -->
+<div class="page active" id="page-dashboard">
+  <div class="topbar">
+    <div><h1>Daily audit</h1><div class="topbar-sub" id="dash-sub">—</div></div>
+    <div class="topbar-right">
+      <input type="date" id="dash-date" onchange="S.date=this.value">
+      <button class="btn btn-ghost btn-sm" onclick="refreshDashboard()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        Refresh
+      </button>
+      <button class="btn btn-ghost btn-sm" onclick="loadOdooUsers()" id="btn-load-odoo">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/></svg>
+        Load Odoo
+      </button>
+      <button class="btn btn-primary btn-sm" onclick="fetchTD()" id="btn-fetch-td">
+        Fetch TD data
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-scroll">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-hdr"><span class="kpi-label">Tracked employees</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5B7BD" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M3 21v-1a6 6 0 0 1 6-6h0a6 6 0 0 1 6 6v1"/><circle cx="17" cy="9" r="3"/><path d="M21 21v-1a4 4 0 0 0-4-4"/></svg></div>
+        <div class="kpi-value" id="kpi-tracked">—</div>
+        <div class="kpi-sub" id="kpi-tracked-sub">Fetch TD data to load</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-hdr"><span class="kpi-label">Avg productivity</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5B7BD" stroke-width="2" stroke-linecap="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+        <div class="kpi-value" id="kpi-prod">—<span style="font-size:14px;color:#8B8E99;font-weight:500">%</span></div>
+        <div class="kpi-sub">active ratio</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-hdr"><span class="kpi-label">Total hours logged</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5B7BD" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></svg></div>
+        <div class="kpi-value mono" id="kpi-hours">—</div>
+        <div class="kpi-sub">combined team</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-hdr"><span class="kpi-label">Need attention</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="kpi-value" id="kpi-attn">—</div>
+        <div class="kpi-sub" id="kpi-attn-sub">warn or high idle</div>
+      </div>
+    </div>
+    <div class="filter-row">
+      <button class="filter-chip active" onclick="applyFilter('all',this)">All <span class="fc-count" id="fc-all">—</span></button>
+      <button class="filter-chip" onclick="applyFilter('good',this)"><span class="fc-dot" style="background:#2A7F5C"></span>Healthy <span class="fc-count" id="fc-good">—</span></button>
+      <button class="filter-chip" onclick="applyFilter('warn',this)"><span class="fc-dot" style="background:#B7791F"></span>Warn <span class="fc-count" id="fc-warn">—</span></button>
+      <button class="filter-chip" onclick="applyFilter('danger',this)"><span class="fc-dot" style="background:#B23A2F"></span>High idle <span class="fc-count" id="fc-danger">—</span></button>
+      <button class="filter-chip" onclick="applyFilter('absent',this)"><span class="fc-dot" style="background:#B5B7BD"></span>Absent <span class="fc-count" id="fc-absent">—</span></button>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ECE9E2;border-radius:7px;background:#FFFFFF;width:200px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8B8E99" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="text" id="emp-search" placeholder="Search employees…" style="border:0;background:transparent;outline:none;flex:1;font-size:12.5px;color:#15192A;font-family:inherit" oninput="renderTable()">
+      </div>
+    </div>
+    <div class="grp-row" id="grp-filter-row" style="display:none">
+      <span class="grp-label">Group:</span>
+      <div id="grp-chips" style="display:flex;flex-wrap:wrap;gap:5px"></div>
+    </div>
+    <div class="emp-table">
+      <div class="emp-header emp-cols">
+        <div>Employee</div><div>Group</div><div>Status</div>
+        <div style="text-align:right">Hours</div>
+        <div style="padding-left:18px">Active vs idle</div>
+        <div style="text-align:right">Non-prod</div>
+        <div style="text-align:center">Score</div>
+        <div style="padding-left:6px">Activity</div>
+        <div style="text-align:right">Odoo</div>
+      </div>
+      <div id="emp-tbody">
+        <div class="empty-state"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg><div>No data — click <strong>Fetch TD data</strong> to load.</div></div>
+      </div>
+      <div class="emp-footer">
+        <div class="legend">
+          <span class="legend-item"><span class="legend-dot" style="background:#2A7F5C"></span>Active</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#E5C46A"></span>Idle</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#D67E5E"></span>Non-prod</span>
+        </div>
+        <div style="margin-left:auto;font-family:'JetBrains Mono',monospace;color:#4A5060" id="emp-footer-info">—</div>
+      </div>
+    </div>
+    <div class="log-panel">
+      <div class="log-header">
+        <span class="status-dot" style="margin-right:8px"></span>
+        <span style="font-size:13px;font-weight:600;color:#15192A">Activity log</span>
+        <span style="font-size:11.5px;color:#8B8E99;margin-left:6px">live</span>
+        <button class="btn btn-ghost btn-sm" style="margin-left:auto" onclick="clearLog()">Clear</button>
+      </div>
+      <div class="log-body" id="log-body">
+        <div class="log-entry"><span class="linfo">info</span><span class="log-msg">Dashboard ready. Configure Settings, then Fetch TD data.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ REPORTS ════ -->
+<div class="page" id="page-reports">
+  <div class="topbar">
+    <div><h1>Reports</h1><div class="topbar-sub" id="rep-sub">TD + Odoo combined</div></div>
+    <div class="topbar-right">
+      <input type="date" id="rep-date" onchange="S.repDate=this.value">
+      <button class="btn btn-ghost btn-sm" onclick="fetchTDForReports()" id="btn-rep-fetch">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Fetch for Date
+      </button>
+      <button class="btn btn-ghost btn-sm" onclick="loadOdooForReports()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/></svg>
+        Load Odoo
+      </button>
+      <button class="btn btn-ghost btn-sm" onclick="loadReports()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        Refresh
+      </button>
+      <button class="btn btn-dark btn-sm" onclick="downloadRepPDF()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </button>
+    </div>
+  </div>
+  <div class="page-scroll">
+    <div class="section-hdr">
+      <span class="section-title">Combined Employee Report</span>
+      <div class="section-line"></div>
+      <span style="font-size:11.5px;color:#8B8E99;white-space:nowrap" id="rep-date-label">—</span>
+    </div>
+    <div class="ct-wrap" id="combined-report">
+      <div class="empty-state"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg><div>Fetch TD data first to see the combined report.</div></div>
+    </div>
+    <div class="report-grid">
+      <div class="rcard">
+        <div class="rcard-title">Top performers</div>
+        <div id="top-performers-list"><div class="empty-state" style="padding:16px;font-size:12px">No data</div></div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-title">Needs attention</div>
+        <div id="attn-list"><div class="empty-state" style="padding:16px;font-size:12px">No data</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SETTINGS ════ -->
+<div class="page" id="page-settings">
+  <div class="topbar">
+    <div><h1>Settings</h1><div class="topbar-sub">Connections &amp; User mapping</div></div>
+    <div class="topbar-right">
+      <button class="btn btn-ghost btn-sm" onclick="loadSettings()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        Reload
+      </button>
+    </div>
+  </div>
+  <div class="page-scroll">
+    <div class="s-section">
+      <div class="s-divider"><div class="s-title">Connections</div><div class="s-line"></div></div>
+      <div class="conn-grid">
+        <div class="conn-card">
+          <div class="conn-hdr">
+            <div class="conn-icon" style="background:#7B2C8C;color:#fff">O</div>
+            <div><div style="font-size:13px;font-weight:600;color:#15192A">Odoo Connection</div><div style="font-size:11.5px;color:#8B8E99">ERP user activity source</div></div>
+            <span class="conn-status" id="odoo-conn-status" style="background:#F2F0EA;color:#8B8E99"><span style="width:5px;height:5px;border-radius:50%;background:#B5B7BD"></span>Not tested</span>
+          </div>
+          <div class="form-group"><label class="form-label">Host URL</label><input class="form-input mono" id="odoo-host" type="text" placeholder="https://company.odoo.com"></div>
+          <div class="form-row2">
+            <div class="form-group"><label class="form-label">Database</label><input class="form-input mono" id="odoo-db" type="text" placeholder="company-prod"></div>
+            <div class="form-group"><label class="form-label">Username</label><input class="form-input" id="odoo-user" type="text" placeholder="user@company.com"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Password</label><input class="form-input mono" id="odoo-pass" type="password" placeholder="Enter to update" autocomplete="current-password"></div>
+          <div class="conn-footer">
+            <button class="btn btn-dark btn-sm" onclick="saveOdooConfig()">Save config</button>
+            <button class="btn btn-ghost btn-sm" onclick="testOdoo()" id="btn-test-odoo">Test connection</button>
+            <span style="font-size:11.5px;margin-left:auto" id="odoo-test-msg"></span>
+          </div>
+        </div>
+        <div class="conn-card">
+          <div class="conn-hdr">
+            <div class="conn-icon" style="background:#ED6B17;color:#fff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></div>
+            <div><div style="font-size:13px;font-weight:600;color:#15192A">TimeDoctor Credentials</div><div style="font-size:11.5px;color:#8B8E99">Activity tracking source</div></div>
+            <span class="conn-status" id="td-conn-status" style="background:#F2F0EA;color:#8B8E99"><span style="width:5px;height:5px;border-radius:50%;background:#B5B7BD"></span>No token</span>
+          </div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="td-email" type="email" placeholder="user@company.com"></div>
+          <div class="form-group"><label class="form-label">Password</label><input class="form-input mono" id="td-pass" type="password" placeholder="Enter to login" autocomplete="current-password"></div>
+          <div class="infobox"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="2.2" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Token auto-refreshes 12h before expiry. Re-login only if log shows &ldquo;session expired&rdquo;.</span></div>
+          <div class="conn-footer">
+            <button class="btn btn-primary btn-sm" onclick="tdLogin()" id="btn-td-login">Login to TimeDoctor</button>
+            <span style="font-size:11.5px;margin-left:auto" id="td-login-msg"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s-section">
+      <div class="s-divider"><div class="s-title">User mapping</div><div class="s-line"></div><span style="font-size:11.5px;color:#8B8E99;white-space:nowrap" id="mapping-count-label">— linked</span></div>
+      <div class="map-panel">
+        <div class="map-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A7F5C" stroke-width="2" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>Select one user from each list, then click <strong style="margin:0 3px">Link</strong>. Mapped = green. Click <strong style="margin:0 3px">Reload Odoo roster</strong> if a new hire is missing.</div>
+        <div class="map-grid">
+          <div class="map-col">
+            <div class="map-col-hdr"><div style="width:18px;height:18px;border-radius:5px;background:#7B2C8C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;flex:none">O</div><span style="font-size:12px;font-weight:600;color:#15192A">Odoo users</span><span style="margin-left:auto;font-size:11px;color:#8B8E99;font-family:'JetBrains Mono',monospace" id="odoo-map-count">—</span></div>
+            <div class="map-search-wrap"><div class="map-search"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8B8E99" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="text" placeholder="Filter Odoo users…" id="odoo-map-search" oninput="filterMapList('odoo')" autocomplete="off"></div></div>
+            <div class="map-list" id="odoo-map-list"><div class="empty-state" style="padding:24px 16px;font-size:12px">Load Odoo roster first</div></div>
+          </div>
+          <div class="map-actions">
+            <button id="btn-link" class="btn btn-primary btn-sm" style="width:100%;justify-content:center" onclick="linkSelected()" title="Select one user from each list"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 1 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 1 0 7 7l1-1"/></svg>Link</button>
+            <button class="btn btn-red btn-sm" style="width:100%;justify-content:center" onclick="unlinkSelected()">Unlink</button>
+            <div class="map-divider-line"></div>
+            <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;font-size:11.5px;white-space:normal;text-align:center;line-height:1.3" onclick="autoMatchByEmail()">Auto-match<br>by email</button>
+            <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;font-size:11.5px;white-space:normal;text-align:center;line-height:1.3" onclick="reloadOdooRoster()">Reload<br>Odoo roster</button>
+          </div>
+          <div class="map-col">
+            <div class="map-col-hdr"><div style="width:18px;height:18px;border-radius:5px;background:#ED6B17;color:#fff;display:flex;align-items:center;justify-content:center;flex:none"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></div><span style="font-size:12px;font-weight:600;color:#15192A">TimeDoctor employees</span><span style="margin-left:auto;font-size:11px;color:#8B8E99;font-family:'JetBrains Mono',monospace" id="td-map-count">—</span></div>
+            <div class="map-search-wrap"><div class="map-search"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8B8E99" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="text" placeholder="Filter TD employees…" id="td-map-search" oninput="filterMapList('td')" autocomplete="off"></div></div>
+            <div class="map-list" id="td-map-list"><div class="empty-state" style="padding:24px 16px;font-size:12px">Fetch TD data first</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- ════ EMPLOYEE MODAL ════ -->
+<div class="modal-overlay" id="emp-modal" onclick="if(event.target===this)closeEmployee()">
+  <div class="modal-card">
+    <div class="modal-hdr">
+      <div id="emp-modal-ava" class="avatar" style="width:38px;height:38px;font-size:15px;border-radius:9px;flex:none"></div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span id="emp-modal-name" style="font-size:16px;font-weight:600;color:#15192A"></span>
+          <span id="emp-modal-group" style="display:none;padding:2px 7px;background:#EEF2FF;color:#3B4FC5;font-size:11px;border-radius:4px;font-weight:500"></span>
+        </div>
+        <div id="emp-modal-date" style="font-size:12px;color:#8B8E99;margin-top:2px"></div>
+      </div>
+      <div id="emp-modal-score" class="score-badge"></div>
+      <button class="btn btn-dark btn-sm" onclick="printEmployee()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </button>
+      <button class="btn btn-ghost btn-sm" onclick="closeEmployee()" style="font-size:16px;padding:5px 10px;line-height:1">&#215;</button>
+    </div>
+    <div class="modal-body" id="emp-modal-body">
+      <div class="empty-state">Loading…</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══ State ═══
+const S={
+  rows:[],auditUsers:[],mapping:{},odooUsers:[],tdUsers:[],
+  selOdoo:null,selTD:null,filter:'all',groupFilter:'all',
+  date:'',repDate:'',groups:[],linkMode:false
+};
+
+// ═══ Utils ═══
+const PAL=[{bg:'#F4E4D6',fg:'#9A4B1A'},{bg:'#E0E8F4',fg:'#28457E'},{bg:'#E4EFE3',fg:'#2D6A3F'},{bg:'#F2E4EE',fg:'#7B2C8C'},{bg:'#F4EBD6',fg:'#8C6A1F'},{bg:'#E0EAEC',fg:'#2A5C66'},{bg:'#EFE3E1',fg:'#8C3E2C'}];
+function _hash(s){let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h);}
+function avc(n){return PAL[_hash(n)%PAL.length];}
+function ini(n){const p=(n||'').split(/[\s\-]+/).filter(Boolean);if(!p.length)return'?';if(p.length===1)return p[0].slice(0,2).toUpperCase();return(p[0][0]+p[p.length-1][0]).toUpperCase();}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function nowt(){return new Date().toTimeString().slice(0,8);}
+function todayISO(){return new Date().toISOString().split('T')[0];}
+function fmtDate(d){if(!d)return'—';try{const dt=new Date(d+'T12:00:00');return dt.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});}catch{return d;}}
+
+const TS={good:{bg:'#E5F0EA',fg:'#1F5C42',dot:'#2A7F5C',lbl:'Healthy'},warn:{bg:'#FBF1DB',fg:'#7C5310',dot:'#B7791F',lbl:'Warn'},danger:{bg:'#FAE4E1',fg:'#7B281F',dot:'#B23A2F',lbl:'High idle'},absent:{bg:'#F2F0EA',fg:'#8B8E99',dot:'#B5B7BD',lbl:'Absent'}};
+
+function scoreOf(r){
+  if(!r||!r.worked_s)return 0;
+  const a=r.active_s||0,np=r.nonprod_s||0,t=r.worked_s;
+  return Math.max(0,Math.min(100,Math.round(a/t*100-(np/t)*20)));
+}
+function sBand(s){
+  if(!s)return{ring:'#B5B7BD',bg:'#F2F0EA',fg:'#8B8E99',l:'—'};
+  if(s>=85)return{ring:'#2A7F5C',bg:'#E5F0EA',fg:'#1F5C42',l:'A'};
+  if(s>=70)return{ring:'#4D9E72',bg:'#EAF3EE',fg:'#2F6249',l:'B'};
+  if(s>=55)return{ring:'#B7791F',bg:'#FBF1DB',fg:'#7C5310',l:'C'};
+  if(s>=40)return{ring:'#C77A0E',bg:'#FBE7D4',fg:'#7C4A0D',l:'D'};
+  return{ring:'#B23A2F',bg:'#FAE4E1',fg:'#7B281F',l:'F'};
+}
+const BPAT={good:[70,78,84,82,72,88,90,82,75],warn:[60,55,70,45,68,72,50,60,58],danger:[40,60,30,50,20,55,38,45,30],absent:[0,0,0,0,0,0,0,0,0]};
+function bars(r){return(BPAT[r.tag]||BPAT.good).map(v=>{let c='#E5C46A';if(!v)c='#F2F0EA';else if(v>=75)c='#2A7F5C';else if(v>=50)c='#4D9E72';else if(v>=30)c='#B7791F';else c='#D67E5E';return{h:v?Math.max(15,v)+'%':'12%',c};});}
+function getOdooUser(tdName){
+  const login=(S.mapping[tdName]||'').toLowerCase();
+  if(login){const u=S.auditUsers.find(u=>(u.login||'').toLowerCase()===login);if(u)return u;}
+  return S.auditUsers.find(u=>u.name===tdName)||null;
+}
+
+// ═══ Nav ═══
+function goto(pg){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+pg).classList.add('active');
+  document.getElementById('nav-'+pg).classList.add('active');
+  if(pg==='reports')loadReports();
+  if(pg==='settings')loadSettings();
+}
+
+// ═══ SSE ═══
+function initSSE(){
+  const es=new EventSource('/stream/logs');
+  es.onmessage=e=>{
+    try{
+      const d=JSON.parse(e.data);
+      if(d.ping)return;
+      const m=d.msg||'';
+      if(m==='TD_ROWS_READY'){refreshDashboard();loadReports();return;}
+      if(m==='ODOO_USERS_READY'){loadOdooResult();return;}
+      if(m.startsWith('TD_TOKEN:')){updateTDStatus(true);return;}
+      appendLog(d.ts||nowt(),d.tag||'info',m);
+    }catch{}
+  };
+  es.onerror=()=>appendLog(nowt(),'warn','SSE reconnecting…');
+}
+function appendLog(ts,tag,msg){
+  const b=document.getElementById('log-body');
+  const cls={ok:'lok',info:'linfo',warn:'lwarn',err:'lerr'}[tag]||'linfo';
+  const d=document.createElement('div');d.className='log-entry';
+  d.innerHTML=`<span class="lt">${esc(ts)}</span><span class="${cls}">${esc(['_refresh_','_td_token_'].includes(tag)?'info':tag)}</span><span class="log-msg">${esc(msg)}</span>`;
+  b.appendChild(d);b.scrollTop=b.scrollHeight;
+}
+function clearLog(){document.getElementById('log-body').innerHTML='';}
+
+// ═══ Date ═══
+function initDate(){
+  S.date=todayISO();S.repDate=todayISO();
+  document.getElementById('dash-date').value=S.date;
+  document.getElementById('rep-date').value=S.repDate;
+}
+
+// ═══ TD Fetch ═══
+async function fetchTD(){
+  const btn=document.getElementById('btn-fetch-td');
+  btn.disabled=true;btn.innerHTML='<span class="spin"></span> Fetching…';
+  appendLog(nowt(),'info','Fetching TD for '+S.date+'…');
+  try{
+    const r=await fetch('/api/td/fetch',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date:S.date})});
+    const d=await r.json();if(!d.ok)throw new Error(d.error||'error');
+  }catch(e){toast('TD fetch: '+e.message,'err');appendLog(nowt(),'err',e.message);}
+  finally{btn.disabled=false;btn.innerHTML='Fetch TD data <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';}
+}
+async function fetchTDForReports(){
+  S.repDate=document.getElementById('rep-date').value||todayISO();
+  const btn=document.getElementById('btn-rep-fetch');
+  btn.disabled=true;btn.innerHTML='<span class="spin spin-dark"></span>';
+  try{
+    const r=await fetch('/api/td/fetch',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date:S.repDate})});
+    const d=await r.json();if(!d.ok)throw new Error(d.error||'error');
+    toast('Fetching TD for '+S.repDate,'ok');
+  }catch(e){toast('TD fetch: '+e.message,'err');}
+  finally{btn.disabled=false;btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Fetch for Date';}
+}
+async function loadOdooForReports(){
+  const dt=document.getElementById('rep-date').value||todayISO();
+  try{
+    const r=await fetch('/api/odoo/load-users',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date:dt})});
+    const d=await r.json();if(!d.ok)throw new Error(d.error||'error');
+    toast('Loading Odoo for '+dt,'ok');
+  }catch(e){toast('Odoo: '+e.message,'err');}
+}
+
+// ═══ Odoo ═══
+async function loadOdooUsers(){
+  const btn=document.getElementById('btn-load-odoo');
+  btn.disabled=true;btn.innerHTML='<span class="spin spin-dark"></span> Loading…';
+  try{
+    const r=await fetch('/api/odoo/load-users',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date:S.date})});
+    const d=await r.json();if(!d.ok)throw new Error(d.error||'error');
+  }catch(e){toast('Odoo: '+e.message,'err');appendLog(nowt(),'err','Odoo: '+e.message);}
+  finally{btn.disabled=false;btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/></svg> Load Odoo';}
+}
+async function loadOdooResult(){
+  const r=await fetch('/api/odoo/users-result');const d=await r.json();
+  S.auditUsers=d.users||[];appendLog(nowt(),'ok','Odoo: '+S.auditUsers.length+' user(s)');
+  if(S.rows.length){renderTable();loadReports();}
+}
+
+// ═══ Groups ═══
+async function loadGroups(){
+  try{const r=await fetch('/api/td/groups');const d=await r.json();S.groups=d.groups||[];}catch{}
+  renderGroupFilter();
+}
+function renderGroupFilter(){
+  const row=document.getElementById('grp-filter-row');
+  const chips=document.getElementById('grp-chips');
+  const names=[...new Set(S.rows.map(r=>r.group).filter(Boolean))].sort();
+  if(!names.length){row.style.display='none';return;}
+  row.style.display='flex';
+  let html=`<button class="grp-chip${S.groupFilter==='all'?' active':''}" onclick="applyGroup('all',this)">All</button>`;
+  names.forEach(g=>{html+=`<button class="grp-chip${S.groupFilter===g?' active':''}" onclick="applyGroup(${JSON.stringify(g)},this)">${esc(g)}</button>`;});
+  chips.innerHTML=html;
+}
+function applyGroup(g,btn){
+  S.groupFilter=g;
+  document.querySelectorAll('.grp-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');renderTable();
+}
+
+// ═══ Dashboard ═══
+async function refreshDashboard(){
+  const r=await fetch('/api/td/rows');const d=await r.json();
+  S.rows=d.rows||[];
+  if(d.date){S.date=d.date;document.getElementById('dash-date').value=S.date;}
+  updateSub();updateKPIs();updateFilterCounts();renderGroupFilter();renderTable();updateSidebar();
+  loadGroups();
+}
+function updateSub(){
+  document.getElementById('dash-sub').textContent=fmtDate(S.date);
+  document.getElementById('rep-sub').textContent='TD + Odoo combined · '+fmtDate(S.repDate||S.date);
+  document.getElementById('rep-date-label').textContent=fmtDate(S.repDate||S.date);
+}
+function updateKPIs(){
+  const rows=S.rows,tot=rows.length,absent=rows.filter(r=>r.tag==='absent').length,attn=rows.filter(r=>r.tag==='danger'||r.tag==='warn').length;
+  let ws=0,as=0;rows.forEach(r=>{ws+=r.worked_s||0;as+=r.active_s||0;});
+  const prod=ws?Math.round(as/ws*100):0,h=Math.floor(ws/3600),m=Math.floor((ws%3600)/60);
+  document.getElementById('kpi-tracked').textContent=tot||'—';
+  document.getElementById('kpi-tracked-sub').textContent=(tot-absent)+' active · '+absent+' absent';
+  document.getElementById('kpi-prod').innerHTML=prod+'<span style="font-size:14px;color:#8B8E99;font-weight:500">%</span>';
+  document.getElementById('kpi-hours').textContent=h+'h '+String(m).padStart(2,'0')+'m';
+  const dang=rows.filter(r=>r.tag==='danger').length,wa=rows.filter(r=>r.tag==='warn').length;
+  document.getElementById('kpi-attn').textContent=attn||'—';
+  document.getElementById('kpi-attn-sub').innerHTML=(dang?`<span style="color:#B23A2F">${dang} high idle</span> · `:'')+`<span style="color:#B7791F">${wa} warn</span>`;
+}
+function updateFilterCounts(){
+  document.getElementById('fc-all').textContent=S.rows.length||'—';
+  ['good','warn','danger','absent'].forEach(t=>document.getElementById('fc-'+t).textContent=S.rows.filter(r=>r.tag===t).length||'0');
+}
+function applyFilter(tag,btn){
+  S.filter=tag;document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderTable();
+}
+function renderTable(){
+  const tbody=document.getElementById('emp-tbody');
+  const q=(document.getElementById('emp-search').value||'').toLowerCase();
+  let rows=S.rows;
+  if(S.filter!=='all')rows=rows.filter(r=>r.tag===S.filter);
+  if(S.groupFilter!=='all')rows=rows.filter(r=>r.group===S.groupFilter);
+  if(q)rows=rows.filter(r=>r.name.toLowerCase().includes(q));
+  if(!rows.length){
+    tbody.innerHTML=`<div class="empty-state"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg><div>${S.rows.length?'No employees match filter.':'No data — click <strong>Fetch TD data</strong>.'}</div></div>`;
+    document.getElementById('emp-footer-info').textContent='No records';return;
+  }
+  const ts=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('emp-footer-info').textContent=`${rows.length} of ${S.rows.length} · sync ${ts}`;
+  tbody.innerHTML=rows.map(row=>{
+    const ac=avc(row.name),t=TS[row.tag]||TS.good,sc=scoreOf(row),sb=sBand(sc),br=bars(row);
+    const tot=Math.max((row.active_s||0)+(row.idle_min||0)*60+(row.nonprod_s||0),1);
+    const aw=((row.active_s||0)/tot*100).toFixed(1),iw=((row.idle_min||0)*60/tot*100).toFixed(1),nw=((row.nonprod_s||0)/tot*100).toFixed(1);
+    const npm=(row.nonprod_s||0)/60,npc=npm>=40?'#B23A2F':npm>=20?'#B7791F':'#4A5060';
+    const ouR=getOdooUser(row.name);
+    const odooCount=ouR?String(ouR.count):(row.odoo_act&&row.odoo_act!=='—'?row.odoo_act:'—');
+    const oc=(odooCount==='—')?'#B5B7BD':'#15192A';
+    const abs=row.tag==='absent';
+    return`<div class="emp-row emp-cols">
+      <div style="display:flex;align-items:center;gap:11px;min-width:0">
+        <div class="avatar" style="background:${ac.bg};color:${ac.fg}">${ini(row.name)}</div>
+        <div style="min-width:0;flex:1"><div class="emp-name-link" onclick="openEmployee(${JSON.stringify(row.name)})">${esc(row.name)}</div><div style="font-size:11px;color:#8B8E99">${esc(row.role||'')}</div></div>
+      </div>
+      <div>${row.group?`<span class="g-tag">${esc(row.group)}</span>`:''}</div>
+      <div><span class="tag-pill" style="background:${t.bg};color:${t.fg}"><span style="width:5px;height:5px;border-radius:50%;background:${t.dot}"></span>${t.lbl}</span></div>
+      <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;color:${abs?'#B5B7BD':'#15192A'};font-weight:500">${esc(row.hours)}</div>
+      <div style="padding-left:18px;padding-right:8px"><div class="act-bar"><div style="background:#2A7F5C;width:${aw}%"></div><div style="background:#E5C46A;width:${iw}%"></div><div style="background:#D67E5E;width:${nw}%"></div></div><div style="display:flex;justify-content:space-between;margin-top:5px;font-size:10.5px;font-family:'JetBrains Mono',monospace"><span style="color:#2A7F5C">${abs?'—':esc(row.active)}</span><span style="color:#B7791F">${abs?'—':esc(row.idle)}</span></div></div>
+      <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:${npc}">${esc(row.nonprod||'—')}</div>
+      <div style="display:flex;justify-content:center"><div class="score-badge" style="background:${sb.bg}"><span class="score-ring" style="background:${sb.ring}">${sb.l}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:${sb.fg};font-weight:600">${sc||'—'}</span></div></div>
+      <div style="padding:0 6px"><div class="mini-bars">${br.map(b=>`<div class="mini-bar" style="height:${b.h};background:${b.c}"></div>`).join('')}</div></div>
+      <div style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;color:${oc};font-weight:500">${esc(odooCount)}</div>
+    </div>`;
+  }).join('');
+}
+function updateSidebar(){
+  const rows=S.rows;
+  document.getElementById('sb-tracked').textContent=rows.length||'—';
+  document.getElementById('sb-active').textContent=rows.filter(r=>r.tag!=='absent').length||'—';
+  document.getElementById('sb-attn').textContent=rows.filter(r=>r.tag==='danger'||r.tag==='warn').length||'—';
+}
+
+// ═══ Reports ═══
+function loadReports(){
+  const dt=S.rows.length?S.date:S.repDate;
+  document.getElementById('rep-date-label').textContent=fmtDate(dt);
+  document.getElementById('rep-sub').textContent='TD + Odoo combined · '+fmtDate(dt);
+  renderCombinedReport();
+  renderTopPerformers();
+  renderAttnList();
+}
+function renderCombinedReport(){
+  const el=document.getElementById('combined-report');
+  if(!S.rows.length){
+    el.innerHTML='<div class="empty-state"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg><div>Fetch TD data first.</div></div>';return;
+  }
+  const rows=[...S.rows].sort((a,b)=>scoreOf(b)-scoreOf(a));
+  let tbl=`<div class="ct-scroll"><table class="ct-table"><thead><tr>
+    <th class="ct-th">#</th>
+    <th class="ct-th">Employee</th>
+    <th class="ct-th">Group</th>
+    <th class="ct-th">Status</th>
+    <th class="ct-th" style="text-align:right">TD Hours</th>
+    <th class="ct-th" style="text-align:right">Active</th>
+    <th class="ct-th" style="text-align:right">Idle</th>
+    <th class="ct-th" style="text-align:right">Non-prod</th>
+    <th class="ct-th" style="text-align:center">Score</th>
+    <th class="ct-th" style="text-align:right">Odoo</th>
+    <th class="ct-th">Odoo modules</th>
+  </tr></thead><tbody>`;
+  rows.forEach((row,i)=>{
+    const ac=avc(row.name),t=TS[row.tag]||TS.good,sc=scoreOf(row),sb=sBand(sc);
+    const ou=getOdooUser(row.name);
+    const repOdooCount=ou?String(ou.count):(row.odoo_act&&row.odoo_act!=='—'?row.odoo_act:'—');
+    const mods=ou?(ou.modules||'').split(',').map(m=>m.trim()).filter(Boolean):[];
+    const modsHtml=mods.slice(0,3).map(m=>`<span class="odoo-mod-chip">${esc(m)}</span>`).join('')+(mods.length>3?`<span style="font-size:10px;color:#8B8E99"> +${mods.length-3}</span>`:'');
+    tbl+=`<tr class="ct-tr">
+      <td class="ct-td" style="color:#8B8E99;font-family:'JetBrains Mono',monospace;font-size:12px">${i+1}</td>
+      <td class="ct-td"><div style="display:flex;align-items:center;gap:9px"><div class="ava-sm" style="background:${ac.bg};color:${ac.fg}">${ini(row.name)}</div><span class="ct-name-link" onclick="openEmployee(${JSON.stringify(row.name)})">${esc(row.name)}</span></div></td>
+      <td class="ct-td">${row.group?`<span class="g-tag">${esc(row.group)}</span>`:''}</td>
+      <td class="ct-td"><span class="tag-pill" style="background:${t.bg};color:${t.fg}"><span style="width:5px;height:5px;border-radius:50%;background:${t.dot}"></span>${t.lbl}</span></td>
+      <td class="ct-td" style="text-align:right;font-family:'JetBrains Mono',monospace;font-weight:500">${esc(row.hours)}</td>
+      <td class="ct-td" style="text-align:right;font-family:'JetBrains Mono',monospace;color:#2A7F5C">${esc(row.active)}</td>
+      <td class="ct-td" style="text-align:right;font-family:'JetBrains Mono',monospace;color:#B7791F">${esc(row.idle)}</td>
+      <td class="ct-td" style="text-align:right;font-family:'JetBrains Mono',monospace">${esc(row.nonprod)}</td>
+      <td class="ct-td" style="text-align:center"><div class="score-badge" style="background:${sb.bg};justify-content:center"><span class="score-ring" style="background:${sb.ring}">${sb.l}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:${sb.fg};font-weight:600">${sc||'—'}</span></div></td>
+      <td class="ct-td" style="text-align:right;font-family:'JetBrains Mono',monospace;font-weight:500;color:${repOdooCount==='—'?'#B5B7BD':'#15192A'}">${esc(repOdooCount)}</td>
+      <td class="ct-td">${modsHtml||'<span style="color:#B5B7BD;font-size:11.5px">—</span>'}</td>
+    </tr>`;
+  });
+  tbl+='</tbody></table></div>';
+  tbl+=`<div style="display:flex;align-items:center;padding:11px 18px;background:#FBFAF6;font-size:11.5px;color:#8B8E99;gap:16px"><span>${rows.length} employees · ${rows.filter(r=>r.tag!=='absent').length} active · ${rows.filter(r=>r.tag==='absent').length} absent</span><span style="margin-left:auto;font-family:'JetBrains Mono',monospace">Generated ${new Date().toLocaleString()}</span></div>`;
+  el.innerHTML=tbl;
+}
+function renderTopPerformers(){
+  const el=document.getElementById('top-performers-list');
+  const sorted=[...S.rows].filter(r=>r.tag!=='absent').sort((a,b)=>scoreOf(b)-scoreOf(a)).slice(0,6);
+  if(!sorted.length){el.innerHTML='<div class="empty-state" style="padding:16px;font-size:12px">No data</div>';return;}
+  el.innerHTML=sorted.map((r,i)=>{const ac=avc(r.name),sc=scoreOf(r),sb=sBand(sc);
+    return`<div class="perf-row"><span class="perf-rank">${i+1}</span><div class="ava-sm" style="background:${ac.bg};color:${ac.fg}">${ini(r.name)}</div><div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between;font-size:12px;align-items:center"><span class="ct-name-link" onclick="openEmployee(${JSON.stringify(r.name)})" style="font-weight:500">${esc(r.name)}</span><span style="font-family:'JetBrains Mono',monospace;color:${sb.fg};font-weight:600">${sc}</span></div><div class="perf-bar-bg"><div class="perf-bar-fill" style="width:${sc}%;background:${sb.ring}"></div></div></div></div>`;
+  }).join('');}
+function renderAttnList(){
+  const el=document.getElementById('attn-list');
+  const list=S.rows.filter(r=>r.tag==='danger'||r.tag==='warn').sort((a,b)=>scoreOf(a)-scoreOf(b)).slice(0,8);
+  if(!list.length){el.innerHTML='<div class="empty-state" style="padding:16px;font-size:12px">No attention items</div>';return;}
+  el.innerHTML=list.map(r=>{const ac=avc(r.name),sc=scoreOf(r),sb=sBand(sc);
+    return`<div class="attn-row"><div class="ava-sm" style="background:${ac.bg};color:${ac.fg}">${ini(r.name)}</div><div style="flex:1;min-width:0"><div class="ct-name-link" onclick="openEmployee(${JSON.stringify(r.name)})" style="font-size:12.5px;font-weight:500">${esc(r.name)}</div><div class="attn-note">${r.tag==='danger'?'High idle':'Warn'} · idle ${esc(r.idle)} · ${esc(r.nonprod)}</div></div><div class="score-badge" style="background:${sb.bg}"><span class="score-ring" style="background:${sb.ring}">${sb.l}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:${sb.fg};font-weight:600">${sc}</span></div></div>`;
+  }).join('');}
+
+// ═══ Employee Modal ═══
+function openEmployee(name){
+  const row=S.rows.find(r=>r.name===name);
+  if(!row){toast('Employee not found','err');return;}
+  const ou=getOdooUser(name);
+  const ac=avc(name),sc=scoreOf(row),sb=sBand(sc),t=TS[row.tag]||TS.absent;
+  // header
+  const ava=document.getElementById('emp-modal-ava');
+  ava.textContent=ini(name);ava.style.background=ac.bg;ava.style.color=ac.fg;
+  document.getElementById('emp-modal-name').textContent=name;
+  const grp=document.getElementById('emp-modal-group');
+  if(row.group){grp.textContent=row.group;grp.style.display='';}else{grp.style.display='none';}
+  document.getElementById('emp-modal-date').textContent=fmtDate(S.date)+' · '+t.lbl;
+  const scoreEl=document.getElementById('emp-modal-score');
+  scoreEl.innerHTML=`<span class="score-ring" style="background:${sb.ring};width:22px;height:22px;font-size:11px">${sb.l}</span><span style="font-family:'JetBrains Mono',monospace;font-size:16px;color:${sb.fg};font-weight:700">${sc||'—'}</span>`;
+  scoreEl.style.cssText=`background:${sb.bg};display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 6px;border-radius:16px`;
+  // body
+  const ws=row.worked_s||0,as=row.active_s||0,np=row.nonprod_s||0,id=(row.idle_min||0)*60;
+  const acPct=ws?Math.round(as/ws*100):0,npPct=ws?Math.round(np/ws*100):0,idPct=ws?Math.round(id/ws*100):0;
+  let body=`<div class="modal-kpi">
+    <div class="m-kcard"><div class="m-kcard-lbl">Total hours</div><div class="m-kcard-val">${esc(row.hours)}</div><div class="m-kcard-sub">logged in TD</div></div>
+    <div class="m-kcard"><div class="m-kcard-lbl">Active time</div><div class="m-kcard-val" style="color:#2A7F5C">${esc(row.active)}</div><div class="m-kcard-sub">${acPct}% of total</div></div>
+    <div class="m-kcard"><div class="m-kcard-lbl">Idle time</div><div class="m-kcard-val" style="color:#B7791F">${esc(row.idle)}</div><div class="m-kcard-sub">${idPct}% of total</div></div>
+    <div class="m-kcard"><div class="m-kcard-lbl">Non-productive</div><div class="m-kcard-val" style="color:${npPct>15?'#B23A2F':'#4A5060'}">${esc(row.nonprod)}</div><div class="m-kcard-sub">${npPct}% of total</div></div>
+  </div>`;
+  // time bar
+  const tot=Math.max(ws,1);
+  const aw=(as/tot*100).toFixed(1),iw=(id/tot*100).toFixed(1),nw=(np/tot*100).toFixed(1);
+  body+=`<div class="modal-section">
+    <div class="modal-section-title">Time breakdown</div>
+    <div style="display:flex;height:12px;border-radius:6px;overflow:hidden;background:#F2F0EA;margin-bottom:8px">
+      <div style="background:#2A7F5C;width:${aw}%"></div>
+      <div style="background:#E5C46A;width:${iw}%"></div>
+      <div style="background:#D67E5E;width:${nw}%"></div>
+    </div>
+    <div style="display:flex;gap:20px;font-size:11.5px">
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:2px;background:#2A7F5C"></span>Active ${aw}%</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:2px;background:#E5C46A"></span>Idle ${iw}%</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:2px;background:#D67E5E"></span>Non-prod ${nw}%</span>
+    </div>
+  </div>`;
+  // score breakdown
+  body+=`<div class="modal-section">
+    <div class="modal-section-title">Score breakdown</div>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center">
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#8B8E99">Active ratio (+)</span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:#2A7F5C">+${acPct}</span></div>
+        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${acPct}%;background:#2A7F5C"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-top:10px;margin-bottom:4px"><span style="color:#8B8E99">Non-prod penalty (−20% weight)</span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:#B23A2F">−${Math.round(npPct*.2)}</span></div>
+        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${Math.min(npPct,100)}%;background:#D67E5E"></div></div>
+        <div style="margin-top:8px;font-size:11.5px;color:#8B8E99">Formula: active% − (nonprod% × 0.2) = <strong style="color:#15192A">${sc}</strong></div>
+      </div>
+      <div style="text-align:center;padding:14px 24px;background:${sb.bg};border-radius:12px">
+        <div class="score-ring" style="background:${sb.ring};width:36px;height:36px;font-size:16px;margin:0 auto 6px">${sb.l}</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:${sb.fg}">${sc}</div>
+        <div style="font-size:11px;color:#8B8E99">out of 100</div>
+      </div>
+    </div>
+  </div>`;
+  // Odoo
+  if(ou){
+    const mods=Object.entries(ou.by_model||{}).sort((a,b)=>b[1].count-a[1].count);
+    body+=`<div class="modal-section">
+      <div class="modal-section-title">Odoo activity — ${ou.count} actions</div>
+      <div style="margin-bottom:14px">`;
+    mods.forEach(([mod,data])=>{
+      const pct=ou.count?Math.round(data.count/ou.count*100):0;
+      body+=`<div class="mod-row"><span style="font-size:12.5px">${esc(mod)}</span><div style="display:flex;align-items:center;gap:8px"><div style="width:80px;height:4px;background:#F2F0EA;border-radius:2px;overflow:hidden"><div style="height:100%;width:${pct}%;background:#3B4FC5;border-radius:2px"></div></div><span class="mod-count">${data.count}</span></div></div>`;
+    });
+    body+='</div>';
+    const entries=(ou.raw_entries||[]).slice(0,40);
+    if(entries.length){
+      body+=`<div style="font-size:11px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px">Recent entries (${entries.length}${(ou.raw_entries||[]).length>40?' of '+(ou.raw_entries||[]).length:''})</div>
+      <div style="max-height:240px;overflow-y:auto;border:1px solid #F2F0EA;border-radius:7px;padding:4px 10px">`;
+      entries.forEach(e=>{body+=`<div class="odoo-entry-row"><span class="odoo-entry-time">${esc(e.time||'—')}</span><span class="odoo-entry-mod">${esc(e.model||'—')}</span><span class="odoo-entry-rec">${esc(e.rec||'—')}</span></div>`;});
+      body+='</div>';
+    }
+    body+='</div>';
+  }else{
+    body+=`<div class="modal-section"><div class="modal-section-title">Odoo activity</div><div style="font-size:12.5px;color:#8B8E99;text-align:center;padding:18px 0">No Odoo data — load Odoo roster and link this employee in Settings → User mapping.</div></div>`;
+  }
+  document.getElementById('emp-modal-body').innerHTML=body;
+  document.getElementById('emp-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeEmployee(){
+  document.getElementById('emp-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function printEmployee(){
+  document.body.classList.add('print-employee');
+  window.print();
+  setTimeout(()=>document.body.classList.remove('print-employee'),500);
+}
+function downloadRepPDF(){
+  document.body.classList.add('print-report');
+  window.print();
+  setTimeout(()=>document.body.classList.remove('print-report'),500);
+}
+
+// ═══ Settings ═══
+async function loadSettings(){
+  try{const r=await fetch('/api/config');const c=await r.json();
+    document.getElementById('odoo-host').value=c.odoo_host||'';
+    document.getElementById('odoo-db').value=c.odoo_db||'';
+    document.getElementById('odoo-user').value=c.odoo_user||'';
+    document.getElementById('td-email').value=c.td_email||'';
+    if(c.has_td_token)updateTDStatus(true,c.td_token_hint);
+  }catch{}
+  await loadMappingData();
+}
+async function saveOdooConfig(){
+  const data={odoo_host:document.getElementById('odoo-host').value.trim(),odoo_db:document.getElementById('odoo-db').value.trim(),odoo_user:document.getElementById('odoo-user').value.trim()};
+  const p=document.getElementById('odoo-pass').value;if(p)data.odoo_pass=p;
+  try{const r=await fetch('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const d=await r.json();
+    if(d.ok){toast('Config saved','ok');document.getElementById('odoo-test-msg').innerHTML='<span style="color:#2A7F5C">Saved ✓</span>';}
+    else throw new Error(d.error);
+  }catch(e){toast('Save failed: '+e.message,'err');}
+}
+async function testOdoo(){
+  const btn=document.getElementById('btn-test-odoo');btn.disabled=true;btn.innerHTML='<span class="spin spin-dark"></span> Testing…';
+  const data={odoo_host:document.getElementById('odoo-host').value.trim(),odoo_db:document.getElementById('odoo-db').value.trim(),odoo_user:document.getElementById('odoo-user').value.trim()};
+  const p=document.getElementById('odoo-pass').value;if(p)data.odoo_pass=p;
+  try{const r=await fetch('/api/odoo/test',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const d=await r.json();
+    if(d.ok){
+      document.getElementById('odoo-conn-status').outerHTML=`<span class="conn-status" id="odoo-conn-status" style="background:#E5F0EA;color:#2A7F5C"><span style="width:5px;height:5px;border-radius:50%;background:#2A7F5C"></span>UID ${d.uid}</span>`;
+      document.getElementById('odoo-test-msg').innerHTML='<span style="color:#2A7F5C">✓ Connected</span>';
+      toast('Odoo OK · UID '+d.uid,'ok');appendLog(nowt(),'ok','Odoo test OK');
+    }else throw new Error(d.error);
+  }catch(e){
+    document.getElementById('odoo-conn-status').outerHTML='<span class="conn-status" id="odoo-conn-status" style="background:#FAE4E1;color:#7B281F"><span style="width:5px;height:5px;border-radius:50%;background:#B23A2F"></span>Failed</span>';
+    document.getElementById('odoo-test-msg').innerHTML='<span style="color:#B23A2F">✗ '+esc(e.message)+'</span>';
+    toast('Odoo test failed: '+e.message,'err');
+  }finally{btn.disabled=false;btn.textContent='Test connection';}
+}
+async function tdLogin(){
+  const email=document.getElementById('td-email').value.trim(),pass=document.getElementById('td-pass').value;
+  if(!email||!pass){toast('Enter email and password','warn');return;}
+  const btn=document.getElementById('btn-td-login');btn.disabled=true;btn.innerHTML='<span class="spin"></span> Logging in…';
+  try{
+    await fetch('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({td_email:email,td_pass:pass})});
+    const r=await fetch('/api/td/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});
+    const d=await r.json();if(!d.ok)throw new Error(d.error||'Login failed');
+    document.getElementById('td-login-msg').innerHTML='<span style="color:#2A7F5C">Login started…</span>';
+    toast('TD login in progress…','ok');
+  }catch(e){toast('TD login: '+e.message,'err');document.getElementById('td-login-msg').innerHTML='<span style="color:#B23A2F">✗ '+esc(e.message)+'</span>';}
+  finally{btn.disabled=false;btn.textContent='Login to TimeDoctor';}
+}
+function updateTDStatus(ok,hint){
+  if(ok){
+    const el=document.getElementById('td-conn-status');
+    el.innerHTML='<span style="width:5px;height:5px;border-radius:50%;background:#2A7F5C"></span>Token saved'+(hint?' · '+hint:'');
+    el.style.cssText='background:#E5F0EA;color:#2A7F5C;margin-left:auto;display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:600';
+    document.getElementById('td-login-msg').innerHTML='<span style="color:#2A7F5C">✓ Authenticated</span>';
+    toast('TimeDoctor: authenticated','ok');
+  }
+}
+
+// ═══ Mapping ═══
+async function loadMappingData(){
+  const[mR,ouR,tuR]=await Promise.all([fetch('/api/mapping').then(r=>r.json()),fetch('/api/mapping/odoo-users-result').then(r=>r.json()),fetch('/api/mapping/td-users').then(r=>r.json())]);
+  S.mapping=mR||{};S.odooUsers=ouR.users||[];S.tdUsers=tuR.users||[];
+  renderMappingLists();updateMappingCount();updateLinkBtn();
+}
+function updateMappingCount(){
+  document.getElementById('mapping-count-label').textContent=Object.keys(S.mapping).length+' linked';
+  document.getElementById('odoo-map-count').textContent=S.odooUsers.length||'—';
+  document.getElementById('td-map-count').textContent=S.tdUsers.length||'—';
+}
+function renderMappingLists(){renderOdooMapList();renderTDMapList();}
+function renderOdooMapList(){
+  const el=document.getElementById('odoo-map-list');
+  const q=(document.getElementById('odoo-map-search').value||'').toLowerCase();
+  const users=S.odooUsers.filter(u=>(u.login||'').trim()!=='').filter(u=>!q||(u.name||'').toLowerCase().includes(q)||(u.login||'').toLowerCase().includes(q));
+  if(!users.length){el.innerHTML='<div class="empty-state" style="padding:24px 16px;font-size:12px">'+(S.odooUsers.length?'No match':'Load Odoo roster first')+'</div>';return;}
+  const rev={};Object.entries(S.mapping).forEach(([td,em])=>rev[em]=td);
+  el.innerHTML=users.map(u=>{const ac=avc(u.name||'?'),lg=(u.login||'').toLowerCase(),linked=rev[lg],sel=S.selOdoo===lg;
+    return`<div class="map-user${sel?' sel':''}" data-lg="${esc(lg)}" onclick="selectOdoo(this.dataset.lg)">
+      <div class="map-radio" onclick="selectOdoo(this.parentElement.dataset.lg);event.stopPropagation()"><div class="map-radio-dot"></div></div>
+      <div class="ava-sm" style="background:${ac.bg};color:${ac.fg}">${ini(u.name||'?')}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600;color:${sel?'#C45510':linked?'#1F5C42':'#15192A'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(u.name||'')}</div>
+        <div style="font-size:11px;color:#8B8E99;font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(u.login||'')}</div>
+      </div>
+      ${sel?'<span style="font-size:10.5px;color:#C45510;font-weight:700;white-space:nowrap;background:#FFF3E8;padding:2px 6px;border-radius:4px">&#10003; selected</span>':linked?'<span class="linked-badge">linked</span>':''}
+    </div>`;
+  }).join('');
+}
+function renderTDMapList(){
+  const el=document.getElementById('td-map-list');
+  const q=(document.getElementById('td-map-search').value||'').toLowerCase();
+  const names=S.tdUsers.filter(n=>!q||n.toLowerCase().includes(q));
+  if(!names.length){el.innerHTML='<div class="empty-state" style="padding:24px 16px;font-size:12px">'+(S.tdUsers.length?'No match':'Fetch TD data first')+'</div>';return;}
+  el.innerHTML=names.map(name=>{const ac=avc(name),linked=S.mapping[name],sel=S.selTD===name;
+    return`<div class="map-user${sel?' sel':''}" data-name="${esc(name)}" onclick="selectTD(this.dataset.name)">
+      <div class="map-radio" onclick="selectTD(this.parentElement.dataset.name);event.stopPropagation()"><div class="map-radio-dot"></div></div>
+      <div class="ava-sm" style="background:${ac.bg};color:${ac.fg}">${ini(name)}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600;color:${sel?'#C45510':linked?'#1F5C42':'#15192A'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(name)}</div>
+        ${linked?`<div style="font-size:11px;color:#2A7F5C;font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">&#8594; ${esc(linked)}</div>`:`<div style="font-size:11px;color:#B7791F">unmapped</div>`}
+      </div>
+      ${sel?'<span style="font-size:10.5px;color:#C45510;font-weight:700;white-space:nowrap;background:#FFF3E8;padding:2px 6px;border-radius:4px">&#10003; selected</span>':linked?'<span class="linked-badge">linked</span>':''}
+    </div>`;
+  }).join('');
+}
+function filterMapList(side){if(side==='odoo')renderOdooMapList();else renderTDMapList();}
+function selectOdoo(lg){
+  S.selOdoo=(S.selOdoo===lg)?null:lg;
+  if(S.selOdoo===null)S.linkMode=false;
+  renderOdooMapList();updateLinkBtn();
+}
+function selectTD(name){
+  S.selTD=(S.selTD===name)?null:name;
+  // if link mode is armed and odoo already selected → auto-link immediately
+  if(S.linkMode&&S.selOdoo&&S.selTD){doLink();return;}
+  renderTDMapList();updateLinkBtn();
+}
+function updateLinkBtn(){
+  const btn=document.getElementById('btn-link');if(!btn)return;
+  if(S.linkMode&&S.selOdoo){
+    btn.style.background='#2563eb';
+    btn.textContent='← Now click a TD employee';
+    btn.title='Click any TD employee on the right to complete the link';
+  } else {
+    const ready=S.selOdoo!==null&&S.selOdoo!==undefined&&S.selOdoo!=='';
+    btn.style.background=ready?'#2A7F5C':'#ED6B17';
+    btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 1 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 1 0 7 7l1-1"/></svg>Link';
+    btn.title=ready?`Odoo selected: ${S.selOdoo} — now click Link then pick TD employee`:'Select an Odoo user first';
+  }
+}
+async function doLink(){
+  if(!S.selOdoo||!S.selTD){toast('Both selections required','warn');return;}
+  const r=await fetch('/api/mapping/link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({td_name:S.selTD,odoo_login:S.selOdoo})});
+  const d=await r.json();
+  if(d.ok){
+    const td=S.selTD,oo=S.selOdoo;
+    S.mapping=d.mapping||S.mapping;S.selOdoo=null;S.selTD=null;S.linkMode=false;
+    renderMappingLists();updateMappingCount();updateLinkBtn();
+    toast('Linked: '+td+' → '+oo,'ok');
+    appendLog(nowt(),'ok','Linked: '+td+' → '+oo);
+  }else{S.linkMode=false;updateLinkBtn();toast('Link failed: '+(d.error||'unknown error'),'err');}
+}
+function linkSelected(){
+  if(S.selOdoo===null||S.selOdoo===undefined||S.selOdoo===''){toast('Select an Odoo user first (left list)','warn');return;}
+  if(S.selTD){doLink();return;}
+  // arm link mode — next TD click auto-links
+  S.linkMode=true;updateLinkBtn();
+  toast('Odoo user locked. Now click a TD employee to link →','ok');
+}
+async function unlinkSelected(){
+  if(!S.selTD){toast('Select a TD employee to unlink','warn');return;}
+  if(!S.mapping[S.selTD]){toast(S.selTD+' not linked','warn');return;}
+  const td=S.selTD;
+  const r=await fetch('/api/mapping/unlink',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({td_name:td})});
+  const d=await r.json();
+  if(d.ok){S.mapping=d.mapping||S.mapping;S.selTD=null;renderMappingLists();updateMappingCount();toast('Unlinked: '+td,'warn');}
+  else toast('Unlink failed: '+(d.error||''),'err');
+}
+async function autoMatchByEmail(){
+  let count=0;const newM={...S.mapping};
+  for(const name of S.tdUsers){
+    if(newM[name])continue;
+    const nl=name.toLowerCase().replace(/[^a-z0-9]/g,'');
+    for(const u of S.odooUsers){
+      const el=(u.login||'').split('@')[0].toLowerCase().replace(/[^a-z0-9]/g,'');
+      if(el.length>2&&(nl.includes(el)||el.includes(nl)||nl.slice(0,5)===el.slice(0,5))){
+        newM[name]=(u.login||'').toLowerCase();count++;break;
+      }
+    }
+  }
+  for(const[td,em]of Object.entries(newM)){
+    if(!S.mapping[td])await fetch('/api/mapping/link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({td_name:td,odoo_login:em})});
+  }
+  S.mapping=newM;renderMappingLists();updateMappingCount();
+  toast(`Auto-matched ${count} user(s)`,'ok');appendLog(nowt(),'ok',`Auto-matched ${count} by email`);
+}
+async function reloadOdooRoster(){
+  await fetch('/api/mapping/odoo-users');toast('Loading Odoo roster…','ok');
+}
+
+// ═══ Toast ═══
+let _tt=null;
+function toast(msg,type='ok'){
+  const el=document.getElementById('toast');el.textContent=msg;
+  el.className='toast show'+(type==='err'?' err':type==='warn'?' warn':'');
+  if(_tt)clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),3500);
+}
+
+// ═══ Keyboard ═══
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeEmployee();});
+
+// ═══ Init ═══
+document.addEventListener('DOMContentLoaded',async()=>{
+  initDate();updateSub();
+  document.getElementById('sb-url').textContent=location.host;
+  initSSE();
+  await refreshDashboard();
+  loadSettings().catch(()=>{});
+});
+</script>
+</body>
+</html>

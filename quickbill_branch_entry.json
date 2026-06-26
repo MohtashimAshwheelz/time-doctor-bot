@@ -1,0 +1,23 @@
+{
+  "_id": "6a23e21a9f38958e9cc45560",
+  "orderId": "12478",
+  "fbrInvoiceNumber": "2026060614190312478",
+  "product": "(Da) Biryani (H)\r\n(Da) Raita\r\n(Da) Salad\r\n(Da) Drink 1L\r\n(Da) Disposible Glass",
+  "quantity": "3\r\n2\r\n2\r\n1\r\n4",
+  "totalSale": 1170,
+  "totalPosFee": 1,
+  "isCancelled": false,
+  "cashier": "Abdul Rehman",
+  "date": "2026-06-06T09:19:04.467Z",
+  "resturant": "Sultan Yakhni Pulao Daska Branch",
+  "method": "Card",
+  "discount": 0,
+  "deliveryCharges": 0,
+  "riderCharges": 0,
+  "customerContactNo": "0",
+  "customerName": "0",
+  "gst": 58.5,
+  "serviceCharge": 0,
+  "waiterCharges": 0,
+  "amountReceived": 2
+}

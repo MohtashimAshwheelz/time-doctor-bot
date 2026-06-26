@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(python --version)",
+      "PowerShell(python -m pip --version)",
+      "Bash(Get-Content \"D:\\\\Projects\\\\Automation\\\\Bots\\\\Time Doctor Bot\\\\main.py\")",
+      "Bash(Measure-Object -Line)",
+      "PowerShell(\\(Get-Content \"D:\\\\Projects\\\\Automation\\\\Bots\\\\Time Doctor Bot\\\\main.py\"\\).Count)",
+      "Read(//c/Users/techs/.claude/skills/ui-ux-pro-max/**)",
+      "Bash(python scripts/search.py \"desktop app settings credentials mapping professional clean\" --design-system -p \"TD Odoo Bot\")",
+      "Bash(ls \"D:\\\\Projects\\\\Automation\\\\Bots\\\\Time Doctor Bot\\\\\" 2>/dev/null && mkdir -p \"D:\\\\Projects\\\\Automation\\\\Bots\\\\Time Doctor Bot\\\\templates\" 2>/dev/null; echo done)",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"D:\\\\Projects\\\\Automation\\\\Bots\\\\Time Doctor Bot\\\\templates\")",
+      "PowerShell($content = Get-Content \"D:\\\\Projects\\\\Automation\\\\Bots\\\\Time Doctor Bot\\\\Time Doctor Bot.html\" -Raw; $content.Length; $content.Substring\\($content.Length - 3000\\))",
+      "PowerShell(Get-Process python -ErrorAction SilentlyContinue | Where-Object {$_.MainWindowTitle -eq '' -or $_.Name -eq 'python'} | Select-Object Id, Name, StartTime)",
+      "PowerShell(Get-Process python -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Force)",
+      "PowerShell(Start-Process python -ArgumentList \"server.py\" -WorkingDirectory \"D:\\\\Projects\\\\Automation\\\\Bots\\\\Time Doctor Bot\")"
+    ]
+  }
+}
