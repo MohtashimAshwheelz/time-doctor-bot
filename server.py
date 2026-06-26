@@ -218,11 +218,15 @@ def stream_logs():
         try:
             while True:
                 try:
-                    evt = q.get(timeout=25)
+                    evt = q.get(timeout=20)
                     yield f"data: {evt}\n\n"
                 except queue.Empty:
                     yield "data: {\"ping\":1}\n\n"
+                except Exception:
+                    break
         except GeneratorExit:
+            pass
+        finally:
             with _log_lock:
                 if q in _log_clients:
                     _log_clients.remove(q)
