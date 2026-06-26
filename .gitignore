@@ -6,3 +6,6 @@ venv/
 .venv/
 *.log
 td_mapping.json
+main.py
+decode_bundle.py
+extract_design.py
