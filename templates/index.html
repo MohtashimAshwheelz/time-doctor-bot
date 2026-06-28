@@ -100,6 +100,28 @@ main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;backg
 .rcard{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;padding:18px 20px}
 .rcard-title{font-size:13px;font-weight:600;color:#15192A;margin-bottom:14px}
 .ct-wrap{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden}
+.bonus-card{background:#FFFFFF;border:1px solid #ECE9E2;border-radius:10px;overflow:hidden}
+.bonus-controls{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;padding:18px 20px;border-bottom:1px solid #F4F2EC;background:#FBFAF6}
+.bonus-ctrl-group{display:flex;flex-direction:column;gap:5px}
+.bonus-label{font-size:11px;font-weight:600;color:#6B6F7A;text-transform:uppercase;letter-spacing:.8px}
+.bonus-input{height:32px;border:1px solid #D8D6D0;border-radius:6px;padding:0 10px;font-size:13px;font-family:inherit;color:#15192A;background:#FFFFFF;outline:none;width:100%;box-sizing:border-box}
+.bonus-input:focus{border-color:#2563eb;box-shadow:0 0 0 2px rgba(37,99,235,.1)}
+.bonus-tier{border-bottom:1px solid #F4F2EC}
+.bonus-tier:last-child{border-bottom:none}
+.bonus-tier-hdr{display:flex;align-items:center;gap:10px;padding:13px 20px 11px;cursor:pointer;user-select:none}
+.bonus-tier-dot{width:9px;height:9px;border-radius:50%;flex:none}
+.bonus-tier-title{font-size:12.5px;font-weight:700;flex:1}
+.bonus-tier-count{font-size:11.5px;font-family:'JetBrains Mono',monospace;color:#8B8E99}
+.bonus-emp-row{display:flex;align-items:flex-start;gap:12px;padding:10px 20px 10px 42px;border-top:1px solid #F8F6F2}
+.bonus-emp-row:first-child{border-top:none}
+.bonus-emp-info{flex:1;min-width:0}
+.bonus-emp-name{font-size:13px;font-weight:600;color:#15192A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bonus-remark{font-size:11.5px;color:#6B6F7A;margin-top:2px;line-height:1.4}
+.bonus-stats{display:flex;gap:14px;margin-top:5px;flex-wrap:wrap}
+.bonus-stat{font-size:11px;font-family:'JetBrains Mono',monospace;color:#8B8E99}
+.bonus-stat span{font-weight:600}
+.bonus-empty{padding:28px 20px;text-align:center;color:#8B8E99;font-size:12.5px}
+.bonus-generating{padding:28px 20px;text-align:center;color:#8B8E99;font-size:12.5px;display:flex;align-items:center;justify-content:center;gap:10px}
 .ct-scroll{overflow-x:auto}
 .ct-table{width:100%;border-collapse:collapse;min-width:920px}
 .ct-th{padding:10px 14px;background:#FBFAF6;font-size:10.5px;font-weight:600;color:#8B8E99;text-transform:uppercase;letter-spacing:.7px;text-align:left;border-bottom:1px solid #ECE9E2;white-space:nowrap}
@@ -206,6 +228,10 @@ input[type=date]:focus{border-color:#93ADE8}
   .modal-card{max-height:none!important;box-shadow:none!important;border:none!important}
   body.print-report #page-reports{display:block!important}
   body.print-report main{display:block!important;overflow:visible!important}
+  body.print-weekly-bonus #page-weekly-bonus{display:block!important}
+  body.print-weekly-bonus main{display:block!important;overflow:visible!important}
+  body.print-monthly-bonus #page-monthly-bonus{display:block!important}
+  body.print-monthly-bonus main{display:block!important;overflow:visible!important}
   body.print-employee .modal-overlay{display:block!important}
   body.print-employee .modal-hdr .btn{display:none!important}
   body.print-employee main{display:none!important}
@@ -235,6 +261,15 @@ input[type=date]:focus{border-color:#93ADE8}
     <button class="nav-btn" id="nav-reports" onclick="goto('reports')">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
       Reports
+    </button>
+    <div class="nav-section-lbl">Bonus</div>
+    <button class="nav-btn" id="nav-weekly-bonus" onclick="goto('weekly-bonus')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01"/></svg>
+      Weekly Bonus
+    </button>
+    <button class="nav-btn" id="nav-monthly-bonus" onclick="goto('monthly-bonus')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h4v4H8z"/></svg>
+      Monthly Bonus
     </button>
     <div class="nav-section-lbl">Setup</div>
     <button class="nav-btn" id="nav-settings" onclick="goto('settings')">
@@ -393,6 +428,7 @@ input[type=date]:focus{border-color:#93ADE8}
         <div id="attn-list"><div class="empty-state" style="padding:16px;font-size:12px">No data</div></div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -468,6 +504,102 @@ input[type=date]:focus{border-color:#93ADE8}
             <div class="map-list" id="td-map-list"><div class="empty-state" style="padding:24px 16px;font-size:12px">Fetch TD data first</div></div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ WEEKLY BONUS ════ -->
+<div class="page" id="page-weekly-bonus">
+  <div class="topbar">
+    <div><h1>Weekly Bonus Report</h1><div class="topbar-sub" id="wb-sub">Select week range &amp; threshold</div></div>
+    <div class="topbar-right">
+      <button class="btn btn-ghost btn-sm" id="btn-wb-pdf" onclick="downloadBonusPDF('weekly')" disabled>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </button>
+      <button class="btn btn-ghost btn-sm" id="btn-wb-excel" onclick="downloadBonusExcel('weekly')" disabled>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="21"/><line x1="8" y1="13" x2="16" y2="21"/></svg>
+        Excel
+      </button>
+    </div>
+  </div>
+  <div class="page-scroll" id="wb-scroll">
+    <div class="bonus-card">
+      <div class="bonus-controls">
+        <div class="bonus-ctrl-group">
+          <label class="bonus-label">Min Hours Threshold</label>
+          <input type="number" id="weekly-hours" class="bonus-input" value="40" min="1" max="200" placeholder="e.g. 40">
+        </div>
+        <div class="bonus-ctrl-group">
+          <label class="bonus-label">Week Start</label>
+          <input type="date" id="weekly-start" class="bonus-input">
+        </div>
+        <div class="bonus-ctrl-group">
+          <label class="bonus-label">Week End</label>
+          <input type="date" id="weekly-end" class="bonus-input">
+        </div>
+        <div class="bonus-ctrl-group" style="justify-content:flex-end;align-items:flex-end">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="btn btn-ghost btn-sm" onclick="shiftWeek(-1)">&#8592; Prev</button>
+            <button class="btn btn-ghost btn-sm" onclick="shiftWeek(1)">Next &#8594;</button>
+            <button class="btn btn-primary btn-sm" onclick="generateBonusReport('weekly')" id="btn-weekly-gen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Generate
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="weekly-bonus-result">
+        <div class="bonus-empty">Set threshold &amp; week range, then click Generate.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MONTHLY BONUS ════ -->
+<div class="page" id="page-monthly-bonus">
+  <div class="topbar">
+    <div><h1>Monthly Bonus Report</h1><div class="topbar-sub" id="mb-sub">Select month range &amp; threshold</div></div>
+    <div class="topbar-right">
+      <button class="btn btn-ghost btn-sm" id="btn-mb-pdf" onclick="downloadBonusPDF('monthly')" disabled>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PDF
+      </button>
+      <button class="btn btn-ghost btn-sm" id="btn-mb-excel" onclick="downloadBonusExcel('monthly')" disabled>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="21"/><line x1="8" y1="13" x2="16" y2="21"/></svg>
+        Excel
+      </button>
+    </div>
+  </div>
+  <div class="page-scroll" id="mb-scroll">
+    <div class="bonus-card">
+      <div class="bonus-controls">
+        <div class="bonus-ctrl-group">
+          <label class="bonus-label">Min Hours Threshold</label>
+          <input type="number" id="monthly-hours" class="bonus-input" value="160" min="1" max="800" placeholder="e.g. 160">
+        </div>
+        <div class="bonus-ctrl-group">
+          <label class="bonus-label">Month From</label>
+          <input type="month" id="monthly-from" class="bonus-input">
+        </div>
+        <div class="bonus-ctrl-group">
+          <label class="bonus-label">Month To</label>
+          <input type="month" id="monthly-to" class="bonus-input">
+        </div>
+        <div class="bonus-ctrl-group" style="justify-content:flex-end;align-items:flex-end">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="btn btn-ghost btn-sm" onclick="shiftMonth(-1)">&#8592; Prev</button>
+            <button class="btn btn-ghost btn-sm" onclick="shiftMonth(1)">Next &#8594;</button>
+            <button class="btn btn-primary btn-sm" onclick="generateBonusReport('monthly')" id="btn-monthly-gen">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Generate
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="monthly-bonus-result">
+        <div class="bonus-empty">Set threshold &amp; month range, then click Generate.</div>
       </div>
     </div>
   </div>
@@ -798,6 +930,212 @@ function renderAttnList(){
     return`<div class="attn-row"><div class="ava-sm" style="background:${ac.bg};color:${ac.fg}">${ini(r.name)}</div><div style="flex:1;min-width:0"><div class="ct-name-link" onclick="openEmployee(${JSON.stringify(r.name)})" style="font-size:12.5px;font-weight:500">${esc(r.name)}</div><div class="attn-note">${r.tag==='danger'?'High idle':'Warn'} · idle ${esc(r.idle)} · ${esc(r.nonprod)}</div></div><div class="score-badge" style="background:${sb.bg}"><span class="score-ring" style="background:${sb.ring}">${sb.l}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:${sb.fg};font-weight:600">${sc}</span></div></div>`;
   }).join('');}
 
+// ═══ Bonus Reports ═══
+function initBonusDates(){
+  const now=new Date();
+  // Week: Mon–Sun of current week
+  const day=now.getDay(),diff=(day===0?-6:1-day);
+  const mon=new Date(now);mon.setDate(now.getDate()+diff);
+  const sun=new Date(mon);sun.setDate(mon.getDate()+6);
+  const fmt=d=>d.toISOString().slice(0,10);
+  document.getElementById('weekly-start').value=fmt(mon);
+  document.getElementById('weekly-end').value=fmt(sun);
+  // Month: current month
+  const ym=now.toISOString().slice(0,7);
+  document.getElementById('monthly-from').value=ym;
+  document.getElementById('monthly-to').value=ym;
+}
+function shiftWeek(dir){
+  const s=document.getElementById('weekly-start'),e=document.getElementById('weekly-end');
+  if(!s.value)return;
+  const d=new Date(s.value);d.setDate(d.getDate()+dir*7);
+  const e2=new Date(d);e2.setDate(d.getDate()+6);
+  s.value=d.toISOString().slice(0,10);e.value=e2.toISOString().slice(0,10);
+}
+function shiftMonth(dir){
+  const f=document.getElementById('monthly-from'),t=document.getElementById('monthly-to');
+  if(!f.value)return;
+  const [y,m]=f.value.split('-').map(Number);
+  const d=new Date(y,m-1+dir,1);
+  const val=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+  f.value=val;t.value=val;
+}
+function fmtHMS(sec){
+  const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60);
+  return h+'h '+(m<10?'0':'')+m+'m';
+}
+function bonusRemark(workedH,threshH,idlePct,tier){
+  const hoursShort=(threshH-workedH).toFixed(1);
+  const idleStr=idlePct.toFixed(1)+'%';
+  if(tier==='qualified')return'✓ Meets all bonus criteria — great work!';
+  const issues=[];
+  if(workedH<threshH)issues.push(`${hoursShort}h below target (${workedH.toFixed(1)}h of ${threshH}h)`);
+  if(idlePct>=10)issues.push(`idle time ${idleStr} — reduce to <10%`);
+  if(tier==='near')return'Almost there: '+issues.join(' · ');
+  if(tier==='average')return'Needs improvement: '+issues.join(' · ');
+  return'Low activity: '+issues.join(' · ')+(workedH<threshH*0.25?' — significantly below target':'');
+}
+function bonusTier(workedH,threshH,idlePct){
+  const hoursOk=workedH>=threshH,idleOk=idlePct<10;
+  if(hoursOk&&idleOk)return'qualified';
+  if(workedH>=threshH*0.8&&idlePct<20)return'near';
+  if(workedH>=threshH*0.5)return'average';
+  return'low';
+}
+function renderBonusTier(tierKey,rows,threshH){
+  const CFG={
+    qualified:{label:'Qualified',color:'#16a34a',bg:'#f0fdf4',dot:'#22c55e',borderColor:'#bbf7d0'},
+    near:     {label:'Near to Qualify',color:'#b45309',bg:'#fffbeb',dot:'#f59e0b',borderColor:'#fde68a'},
+    average:  {label:'Average',color:'#c2410c',bg:'#fff7ed',dot:'#fb923c',borderColor:'#fed7aa'},
+    low:      {label:'Low Activity',color:'#b91c1c',bg:'#fef2f2',dot:'#f87171',borderColor:'#fecaca'},
+  };
+  const c=CFG[tierKey];
+  if(!rows.length)return'';
+  const empRows=rows.map(r=>{
+    const workedH=r.worked_s/3600,idlePct=r.idle_pct||0;
+    const ac=avc(r.name);
+    const remark=bonusRemark(workedH,threshH,idlePct,tierKey);
+    return`<div class="bonus-emp-row">
+      <div class="ava-sm" style="background:${ac.bg};color:${ac.fg};flex:none">${ini(r.name)}</div>
+      <div class="bonus-emp-info">
+        <div class="bonus-emp-name">${esc(r.name)}${r.group?` <span style="font-size:10.5px;color:#8B8E99;font-weight:400">· ${esc(r.group)}</span>`:''}</div>
+        <div class="bonus-remark" style="color:${c.color}">${remark}</div>
+        <div class="bonus-stats">
+          <div class="bonus-stat">Tracked <span style="color:#15192A">${fmtHMS(r.worked_s)}</span></div>
+          <div class="bonus-stat">Active <span style="color:#2A7F5C">${fmtHMS(r.active_s)}</span></div>
+          <div class="bonus-stat">Idle <span style="color:${idlePct>=10?'#ef4444':'#B7791F'}">${idlePct.toFixed(1)}%</span></div>
+        </div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:${c.color};font-weight:700;white-space:nowrap;min-width:40px;text-align:right">${workedH.toFixed(1)}h</div>
+    </div>`;
+  }).join('');
+  return`<div class="bonus-tier">
+    <div class="bonus-tier-hdr" style="background:${c.bg};border-left:3px solid ${c.dot}" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'':'none'">
+      <div class="bonus-tier-dot" style="background:${c.dot}"></div>
+      <div class="bonus-tier-title" style="color:${c.color}">${c.label}</div>
+      <div class="bonus-tier-count">${rows.length} employee${rows.length!==1?'s':''}</div>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="2.4" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div>${empRows}</div>
+  </div>`;
+}
+// last generated bonus data for download
+const _bonusLast={weekly:null,monthly:null};
+
+async function generateBonusReport(type){
+  const isW=type==='weekly';
+  const threshH=parseFloat(document.getElementById(isW?'weekly-hours':'monthly-hours').value)||0;
+  if(!threshH){toast('Set hours threshold first','warn');return;}
+
+  let start,end;
+  if(isW){
+    start=document.getElementById('weekly-start').value;
+    end=document.getElementById('weekly-end').value;
+  }else{
+    const fromM=document.getElementById('monthly-from').value;
+    const toM=document.getElementById('monthly-to').value;
+    if(!fromM||!toM){toast('Select month range','warn');return;}
+    start=fromM+'-01';
+    const [y,m]=toM.split('-').map(Number);
+    const lastDay=new Date(y,m,0).getDate();
+    end=toM+'-'+String(lastDay).padStart(2,'0');
+  }
+  if(!start||!end){toast('Select date range','warn');return;}
+
+  const resultEl=document.getElementById(isW?'weekly-bonus-result':'monthly-bonus-result');
+  const btnId=isW?'btn-weekly-gen':'btn-monthly-gen';
+  const btn=document.getElementById(btnId);
+  const pdfBtn=document.getElementById(isW?'btn-wb-pdf':'btn-mb-pdf');
+  const xlBtn=document.getElementById(isW?'btn-wb-excel':'btn-mb-excel');
+  btn.disabled=true;btn.innerHTML='<span class="spin spin-light"></span>';
+  if(pdfBtn)pdfBtn.disabled=true;
+  if(xlBtn)xlBtn.disabled=true;
+  resultEl.innerHTML=`<div class="bonus-generating"><span class="spin spin-dark"></span> Fetching data for ${start} → ${end}…</div>`;
+
+  try{
+    const r=await fetch(`/api/td/bonus-stats?start=${start}&end=${end}`);
+    const d=await r.json();
+    if(!d.ok)throw new Error(d.error||'error');
+
+    const rows=d.rows.filter(r=>r.worked_s>0);
+    if(!rows.length){resultEl.innerHTML='<div class="bonus-empty">No activity data for this period.</div>';return;}
+
+    const tiers={qualified:[],near:[],average:[],low:[]};
+    rows.forEach(r=>{
+      const workedH=r.worked_s/3600,idlePct=r.idle_pct||0;
+      const tier=bonusTier(workedH,threshH,idlePct);
+      tiers[tier].push({...r,_tier:tier,_workedH:workedH,_idlePct:idlePct});
+    });
+    Object.values(tiers).forEach(t=>t.sort((a,b)=>b.worked_s-a.worked_s));
+
+    // store for download
+    _bonusLast[type]={tiers,threshH,start,end,label:isW?`Week ${start} to ${end}`:`${start} to ${end}`};
+
+    const label=isW?`Week ${start} → ${end}`:`${start} → ${end}`;
+    const summary=`<div style="display:flex;align-items:center;gap:18px;padding:12px 20px;background:#F8F6F0;border-bottom:1px solid #ECE9E2;font-size:12px;color:#6B6F7A">
+      <span style="font-weight:600;color:#15192A">${rows.length} employees · ${label}</span>
+      <span>Threshold: <b>${threshH}h</b> · Idle limit: <b>&lt;10%</b></span>
+      <span style="margin-left:auto;color:#22c55e;font-weight:600">${tiers.qualified.length} qualified</span>
+    </div>`;
+    resultEl.innerHTML=summary+
+      renderBonusTier('qualified',tiers.qualified,threshH)+
+      renderBonusTier('near',tiers.near,threshH)+
+      renderBonusTier('average',tiers.average,threshH)+
+      renderBonusTier('low',tiers.low,threshH);
+
+    if(pdfBtn)pdfBtn.disabled=false;
+    if(xlBtn)xlBtn.disabled=false;
+    const sub=document.getElementById(isW?'wb-sub':'mb-sub');
+    if(sub)sub.textContent=`${label} · Threshold ${threshH}h · ${tiers.qualified.length} qualified`;
+    toast(`Bonus report generated — ${tiers.qualified.length} qualified`,'ok');
+  }catch(e){
+    resultEl.innerHTML=`<div class="bonus-empty" style="color:#ef4444">${esc(e.message)}</div>`;
+    toast('Error: '+e.message,'err');
+  }finally{
+    btn.disabled=false;btn.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate';
+  }
+}
+
+function downloadBonusPDF(type){
+  const cls=type==='weekly'?'print-weekly-bonus':'print-monthly-bonus';
+  document.body.classList.add(cls);
+  window.print();
+  document.body.classList.remove(cls);
+}
+
+function downloadBonusExcel(type){
+  const data=_bonusLast[type];
+  if(!data){toast('Generate report first','warn');return;}
+  const TIER_LABELS={qualified:'Qualified',near:'Near to Qualify',average:'Average',low:'Low Activity'};
+  const rows=[['Bonus Report',data.label,'','','',''],
+    ['Threshold (hours)',data.threshH,'Idle limit','<10%','',''],
+    [''],
+    ['#','Name','Group','Status','Hours Tracked','Active Hours','Idle %','Remarks']];
+  let rank=0;
+  ['qualified','near','average','low'].forEach(tier=>{
+    data.tiers[tier].forEach(r=>{
+      rank++;
+      const remark=bonusRemark(r._workedH,data.threshH,r._idlePct,tier);
+      rows.push([rank,r.name,r.group||'',TIER_LABELS[tier],
+        r._workedH.toFixed(2),
+        (r.active_s/3600).toFixed(2),
+        r._idlePct.toFixed(1)+'%',
+        remark]);
+    });
+  });
+  const csv=rows.map(r=>r.map(v=>{
+    const s=String(v==null?'':v);
+    return s.includes(',')||s.includes('"')||s.includes('\n')?'"'+s.replace(/"/g,'""')+'"':s;
+  }).join(',')).join('\r\n');
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=(type==='weekly'?'weekly':'monthly')+'_bonus_report_'+data.start+'.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('Excel (CSV) downloaded','ok');
+}
+
 // ═══ Employee Modal ═══
 function openEmployee(name){
   const row=S.rows.find(r=>r.name===name);
@@ -1091,7 +1429,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeEmployee();});
 
 // ═══ Init ═══
 document.addEventListener('DOMContentLoaded',async()=>{
-  initDate();updateSub();
+  initDate();initBonusDates();updateSub();
   document.getElementById('sb-url').textContent=location.host;
   initSSE();
   await refreshDashboard();

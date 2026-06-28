@@ -776,6 +776,67 @@ def api_td_employee():
     })
 
 # ══════════════════════════════════════════════════════════════════════════════
+# Bonus report stats API
+# ══════════════════════════════════════════════════════════════════════════════
+
+@app.route("/api/td/bonus-stats", methods=["GET"])
+def api_td_bonus_stats():
+    start = request.args.get("start", "").strip()
+    end   = request.args.get("end",   "").strip()
+    if not start or not end:
+        return jsonify({"ok": False, "error": "start and end required"}), 400
+
+    tok      = _state.get("td_token", "")
+    user_ids = _state.get("td_user_ids", [])
+    id_name  = _state.get("td_id_name", {})
+    user_groups = _state.get("td_user_groups", {})
+
+    if not tok:
+        return jsonify({"ok": False, "error": "No TD token — login first"}), 400
+    if not user_ids:
+        return jsonify({"ok": False, "error": "No TD users — fetch dashboard first"}), 400
+
+    # Convert to PKT (UTC+5)
+    from datetime import timezone, timedelta as _td
+    PKT = timezone(_td(hours=5))
+    try:
+        from datetime import datetime as _dt
+        dt_from = _dt.strptime(start, "%Y-%m-%d").replace(tzinfo=PKT).isoformat()
+        dt_to   = _dt.strptime(end,   "%Y-%m-%d").replace(hour=23, minute=59, second=59, tzinfo=PKT).isoformat()
+    except Exception as e:
+        return jsonify({"ok": False, "error": f"Bad date: {e}"}), 400
+
+    stats = td_fetch_stats(tok, user_ids, dt_from, dt_to)
+
+    rows = []
+    for uid in user_ids:
+        name = id_name.get(uid, "")
+        if not name or name.strip().lower() in SYS_LOGINS:
+            continue
+        st = stats.get(uid, {})
+        worked_s  = int(st.get("totalSec", 0) or 0)
+        active_s  = int(st.get("activeSec", 0) or 0)
+        idle_mins = int(st.get("idleMins", 0) or 0)
+        nonprod_s = int(st.get("unprod", 0) or 0)
+        idle_ratio = st.get("idleMinsRatio", None)
+        if idle_ratio is not None:
+            idle_pct = round(float(idle_ratio) * 100, 1)
+        elif worked_s > 0:
+            idle_pct = round(idle_mins * 100 / (worked_s // 60), 1) if worked_s >= 60 else 0.0
+        else:
+            idle_pct = 0.0
+        rows.append({
+            "name":     name,
+            "group":    user_groups.get(uid, ""),
+            "worked_s": worked_s,
+            "active_s": active_s,
+            "idle_pct": idle_pct,
+            "nonprod_s":nonprod_s,
+        })
+
+    return jsonify({"ok": True, "rows": rows, "start": start, "end": end})
+
+# ══════════════════════════════════════════════════════════════════════════════
 # Entry point
 # ══════════════════════════════════════════════════════════════════════════════
 
